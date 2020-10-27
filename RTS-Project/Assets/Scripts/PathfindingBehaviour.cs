@@ -103,6 +103,8 @@ public class PathfindingBehaviour : MonoBehaviour
                 current = current.nodeParent.GetComponent<Node>();
             }
 
+            choosenPath.Add(current);
+
             return couldFindPath;
         }
         else

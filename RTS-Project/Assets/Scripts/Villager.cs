@@ -8,18 +8,21 @@ public class Villager : MonoBehaviour
     public float sightRadius;
     public float walkSpeed;
     public bool autoFindPath;
+    public Sight sight;
+    public bool mineSeen;
+    public Node oreMine;
     private PathfindingBehaviour pathFinding;
+    public List<Node> unavailableNodes;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         pathFinding = GetComponent<PathfindingBehaviour>();
-        pathFinding.finish = SearchRandomNode();
-        transform.position = pathFinding.finish.transform.position;
-        if(autoFindPath)
-        {
-            SearchNewPath();
-        }
+        mineSeen = false;
+        unavailableNodes = new List<Node>();
+        Invoke("InitialSearch", 0.1f);
+        
     }
 
     // Update is called once per frame
@@ -41,6 +44,8 @@ public class Villager : MonoBehaviour
 
             }
 
+            SearchForMine();
+
             if (pathFinding.canGo)
             {
                 transform.position = Vector3.MoveTowards(transform.position, pathFinding.choosenPath[pathFinding.waypointIndex].transform.position, Time.deltaTime * walkSpeed);
@@ -53,9 +58,17 @@ public class Villager : MonoBehaviour
                     {
                         pathFinding.waypointIndex = 0;
                         pathFinding.canGo = false;
-                        if(autoFindPath)
+                        if (pathFinding.choosenPath[pathFinding.waypointIndex] == oreMine)
                         {
-                            SearchNewPath();
+                            mineSeen = false;
+                            oreMine = null;
+                        }
+                        if (autoFindPath)
+                        {
+                            if(!SearchForMine())
+                            {
+                                SearchNewPath();
+                            }
                         }
                     }
                 }
@@ -63,18 +76,121 @@ public class Villager : MonoBehaviour
         }
     }
 
+    public bool SearchForMine()
+    {
+        if (!mineSeen)
+        {
+            oreMine = SearchRandomNodeFromFOV();
+            if (!isNodeOnUnavailableList(oreMine) && oreMine != null)
+            {
+                Node startNode = null;
+
+                if(pathFinding.choosenPath[pathFinding.waypointIndex])
+                {
+                    startNode = pathFinding.choosenPath[pathFinding.waypointIndex];
+                }
+                else
+                {
+                    startNode = pathFinding.finish;
+                }
+
+                if (pathFinding.Find(startNode, oreMine))
+                {
+                    Debug.Log("FOUND MINE BOYS");
+                    pathFinding.start = startNode;
+                    pathFinding.finish = oreMine;
+                    mineSeen = true;
+                    pathFinding.canGo = true;
+                    pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
+                    unavailableNodes.Clear();
+                    unavailableNodes.Add(oreMine);
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("couldnt find path FOR MINES");
+                    unavailableNodes.Add(oreMine);
+                    mineSeen = false;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public void SearchNewPath()
     {
         pathFinding.start = pathFinding.finish;
-        pathFinding.finish = SearchRandomNode();
+        pathFinding.finish = SearchRandomNodeFromRadius();
         if (pathFinding.Find(pathFinding.start, pathFinding.finish))
         {
             pathFinding.canGo = true;
             pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
         }
+        else
+        {
+            //Debug.Log("couldnt find path I think");
+            pathFinding.canGo = false;
+            // transform.rotation *= Quaternion.Euler(0, 180, 0);
+            // SearchNewPath();
+        }
     }
 
-    public Node SearchRandomNode()
+    public void InitialSearch()
+    {
+        pathFinding.finish = SearchRandomNodeFromRadius();
+        transform.position = pathFinding.finish.transform.position;
+        if (autoFindPath)
+        {
+            SearchNewPath();
+        }
+    }
+
+    public bool isNodeOnUnavailableList(Node currentNode)
+    {
+        foreach (Node n in unavailableNodes)
+        {
+            if(n == currentNode)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Node SearchRandomNodeFromFOV()
+    {
+        if (sight.objectsFound.Count > 0)
+        {
+            List<Node> pointsFound = new List<Node>();
+
+            foreach (GameObject g in sight.objectsFound)
+            {
+                Node n = g.GetComponent<Node>();
+                if (n != pathFinding.start || n != pathFinding.finish)
+                {
+                    pointsFound.Add(n);
+                }
+            }
+
+            if (pointsFound.Count > 0)
+            {
+                int randomIndex = Random.Range(0, pointsFound.Count - 1);
+
+                return pointsFound[randomIndex];
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        return null;
+    }
+
+    public Node SearchRandomNodeFromRadius()
     {
         Grid grid = Grid.Get();
         if (grid)
@@ -86,7 +202,13 @@ public class Villager : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, n.transform.position) <= sightRadius)
                     {
-                        pointsFound.Add(n);
+                        if(n.gameObject.tag != sight.tagToFind)
+                        {
+                            pointsFound.Add(n);
+                        }
+
+                        //pointsFound.Add(n);
+
                     }
                 }
             }
