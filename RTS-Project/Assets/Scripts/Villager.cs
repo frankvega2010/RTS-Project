@@ -120,8 +120,10 @@ public class Villager : MonoBehaviour
 
     public void SearchNewPath()
     {
+        
         pathFinding.start = pathFinding.finish;
         pathFinding.finish = SearchRandomNodeFromRadius();
+        Node originalNode = pathFinding.start;
         if (pathFinding.Find(pathFinding.start, pathFinding.finish))
         {
             pathFinding.canGo = true;
@@ -129,9 +131,10 @@ public class Villager : MonoBehaviour
         }
         else
         {
-            //Debug.Log("couldnt find path I think");
+            Debug.Log("couldnt find path I think");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
+            pathFinding.finish = originalNode;
             SearchNewPath();
         }
     }

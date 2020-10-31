@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PathfindingBehaviour : MonoBehaviour
 {
+    public LayerMask mask;
+    public float raycastDistance;
     public float speed;
     public float changeWaypointDistance;
     public bool canGo;
@@ -83,15 +85,32 @@ public class PathfindingBehaviour : MonoBehaviour
                             {
                                 //Chequear si hay un obstaculo entre medio del current y el neighbour.
                                 //raycast?
+                                Vector3 direction = n.transform.position - current.transform.position;
+                                RaycastHit hit;
+                                bool hitObstacle = false;
 
-                                n.gCost = gCost;
-                                n.SethCost(finish);
-                                n.SetfCost();
-                                n.nodeParent = current.gameObject;
-                                if (!openNodes.Contains(n))
+                                if (Physics.Raycast(current.transform.position, direction.normalized, out hit, raycastDistance, mask))
                                 {
-                                    openNodes.Add(n);
+                                    if (hit.transform.gameObject.tag == "Wall")
+                                    {
+                                        hitObstacle = true;
+                                    }
                                 }
+
+                                Debug.DrawRay(current.transform.position, direction.normalized * raycastDistance, Color.white);
+
+                                if (!hitObstacle)
+                                {
+                                    n.gCost = gCost;
+                                    n.SethCost(finish);
+                                    n.SetfCost();
+                                    n.nodeParent = current.gameObject;
+                                    if (!openNodes.Contains(n))
+                                    {
+                                        openNodes.Add(n);
+                                    }
+                                }
+                                
                             }
                         }
                     }

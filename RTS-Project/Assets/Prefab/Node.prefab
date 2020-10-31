@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5cb3dadd79cc8b4e9d832d0aba51ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighbourRadius: 25
+  neighbourRadius: 15
   gCost: 3.4028235e+38
   hCost: 3.4028235e+38
   fCost: 3.4028235e+38
