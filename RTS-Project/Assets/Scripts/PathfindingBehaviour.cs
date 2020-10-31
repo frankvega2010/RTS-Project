@@ -81,6 +81,9 @@ public class PathfindingBehaviour : MonoBehaviour
                             float gCost = current.gCost + Vector3.Distance(current.transform.position, n.transform.position);
                             if (gCost < n.gCost || !openNodes.Contains(n))
                             {
+                                //Chequear si hay un obstaculo entre medio del current y el neighbour.
+                                //raycast?
+
                                 n.gCost = gCost;
                                 n.SethCost(finish);
                                 n.SetfCost();

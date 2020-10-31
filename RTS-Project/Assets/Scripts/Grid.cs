@@ -6,16 +6,30 @@ public class Grid : MonobehaviourSingleton<Grid>
 {
     
     public GameObject nodesParent;
+    public GameObject obstaclesParent;
     public Node[] nodes;
 
     // Start is called before the first frame update
     void Start()
     {
-        nodes = new Node[nodesParent.transform.childCount];
-        for (int i = 0; i < nodes.Length; i++)
+        nodes = new Node[nodesParent.transform.childCount + (obstaclesParent.transform.childCount*3)];
+        for (int i = 0; i < nodesParent.transform.childCount; i++)
         {
             nodes[i] = nodesParent.transform.GetChild(i).GetComponent<Node>();
-            
+        }
+
+        int i2 = 0;
+        for (int i = 0; i < obstaclesParent.transform.childCount; i++)
+        {
+            Obstacle obs = obstaclesParent.transform.GetChild(i).GetComponent<Obstacle>();
+
+            foreach (Node n in obs.childNodes)
+            {
+                nodes[nodesParent.transform.childCount + i2] = n;
+                i2++;
+            }
+
+            //nodes[i] = obstaclesParent.transform.GetChild(i).GetComponent<Obstacle>();
         }
 
         for (int i = 0; i < nodes.Length; i++)

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Node
   - Mine
+  - Wall
   layers:
   - Default
   - TransparentFX

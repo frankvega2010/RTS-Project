@@ -140,9 +140,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4088992556155723290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ec9b0f81d352a8488e244e44fca9f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isExplored: 0
   mesh: {fileID: 4088992556155723292}

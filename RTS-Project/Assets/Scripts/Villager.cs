@@ -131,8 +131,8 @@ public class Villager : MonoBehaviour
         {
             //Debug.Log("couldnt find path I think");
             pathFinding.canGo = false;
-            // transform.rotation *= Quaternion.Euler(0, 180, 0);
-            // SearchNewPath();
+            transform.rotation *= Quaternion.Euler(0, 180, 0);
+            SearchNewPath();
         }
     }
 
@@ -168,7 +168,7 @@ public class Villager : MonoBehaviour
             foreach (GameObject g in sight.objectsFound)
             {
                 Node n = g.GetComponent<Node>();
-                if (n != pathFinding.start || n != pathFinding.finish)
+                if (n != pathFinding.start || n != pathFinding.finish && n.isWalkable)
                 {
                     pointsFound.Add(n);
                 }
@@ -202,7 +202,7 @@ public class Villager : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, n.transform.position) <= sightRadius)
                     {
-                        if(n.gameObject.tag != sight.tagToFind)
+                        if(n.gameObject.tag != sight.tagToFind && n.isWalkable)
                         {
                             pointsFound.Add(n);
                         }
