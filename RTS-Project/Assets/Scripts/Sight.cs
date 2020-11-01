@@ -39,7 +39,11 @@ public class Sight : MonoBehaviour
 
                 if (Physics.Raycast(transform.position, direction.normalized, out hit, detectionCol.radius * 1.2f, mask))
                 {
-                    if (hit.transform.gameObject.tag == tagToFind)
+                    if (hit.transform.gameObject.tag == "Wall")
+                    {
+                        //?
+                    }
+                    else if (hit.transform.gameObject.tag == tagToFind)
                     {
                         objectInSight = true;
                         if(!objectsFound.Contains(hit.transform.gameObject))

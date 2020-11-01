@@ -38,11 +38,20 @@ public class Grid : MonobehaviourSingleton<Grid>
         }
     }
 
-    public void CleanParents()
+    public void CleanParents(int ID)
     {
         for (int i = 0; i < nodes.Length; i++)
         {
-            nodes[i].nodeParent = null;
+            for (int c = 0; c < nodes[i].nodesParent.Count; c++)
+            {
+                if(nodes[i].nodesParent[c].villagerID == ID)
+                {
+                    //nodes[i].nodesParent[c].villagerID = 1;
+                    //nodes[i].nodesParent[c].parent = null;
+                    nodes[i].nodesParent[c].parent = null;
+                }
+            }
+            
         }
     }
 

@@ -27,29 +27,29 @@ public class PathfindingBehaviour : MonoBehaviour
     {
         
 
-        if (Input.GetMouseButtonDown(2))
+        /*if (Input.GetMouseButtonDown(2))
         {
             if(grid)
             {
                 if(start && finish)
                 {
-                   /* choosenPath =*/ Find(start, finish);
+                   Find(start, finish);
                     canGo = true;
                     waypointIndex = choosenPath.Count-1;
                 }
                 
             }
-        }
+        }*/
     }
 
 
-    public bool Find(Node start, Node finish)
+    public bool Find(Node start, Node finish, int ID)
     {
         //List<Node> finalPath = new List<Node>();
         if (start && finish)
         {
             grid.CleanCosts();
-            grid.CleanParents();
+            grid.CleanParents(ID);
             choosenPath.Clear();
             openNodes.Clear();
             closedNodes.Clear();
@@ -97,14 +97,27 @@ public class PathfindingBehaviour : MonoBehaviour
                                     }
                                 }
 
-                                Debug.DrawRay(current.transform.position, direction.normalized * raycastDistance, Color.white);
+                                //Debug.DrawRay(current.transform.position, direction.normalized * raycastDistance, Color.white);
 
                                 if (!hitObstacle)
                                 {
                                     n.gCost = gCost;
                                     n.SethCost(finish);
                                     n.SetfCost();
-                                    n.nodeParent = current.gameObject;
+
+                                    if (n.GetParent(ID).villagerID != -1)
+                                    {
+                                        n.GetParent(ID).parent = current.gameObject;
+                                    }
+                                    else
+                                    {
+                                        Node.nodeParent parent = new Node.nodeParent();
+                                        parent.villagerID = ID;
+                                        parent.parent = current.gameObject;
+                                        n.nodesParent.Add(parent);
+                                    }
+
+                                    /*n.nodeParent = current.gameObject;*/
                                     if (!openNodes.Contains(n))
                                     {
                                         openNodes.Add(n);
@@ -117,12 +130,11 @@ public class PathfindingBehaviour : MonoBehaviour
                 }
             }
 
-
             //Get Final Path with all the parents
-            while (current.nodeParent)
+            while (current.GetParent(ID).parent)
             {
                 choosenPath.Add(current);
-                current = current.nodeParent.GetComponent<Node>();
+                current = current.GetParent(ID).parent.GetComponent<Node>();
             }
 
             choosenPath.Add(current);

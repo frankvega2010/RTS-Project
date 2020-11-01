@@ -11,6 +11,8 @@ public class Villager : MonoBehaviour
     public Sight sight;
     public bool mineSeen;
     public Node oreMine;
+    public int ID;
+    public Color color;
     private PathfindingBehaviour pathFinding;
     public List<Node> unavailableNodes;
     
@@ -37,10 +39,21 @@ public class Villager : MonoBehaviour
         {
             foreach (Node n in pathFinding.choosenPath)
             {
-                if (n.nodeParent)
+                for (int c = 0; c < n.nodesParent.Count; c++)
+                {
+                    if (n.nodesParent[c].villagerID == ID)
+                    {
+                        if(n.nodesParent[c].parent)
+                        {
+                            Debug.DrawLine(n.transform.position, n.nodesParent[c].parent.transform.position, color);
+                        }
+                    }
+                }
+
+                /*if (n.nodeParent)
                 {
                     Debug.DrawLine(n.transform.position, n.nodeParent.transform.position, Color.green);
-                }
+                }*/
 
             }
 
@@ -80,6 +93,8 @@ public class Villager : MonoBehaviour
     {
         if (!mineSeen)
         {
+            pathFinding.start = pathFinding.finish;
+            Node originalNode = pathFinding.start;
             oreMine = SearchRandomNodeFromFOV();
             if (!isNodeOnUnavailableList(oreMine) && oreMine != null)
             {
@@ -94,7 +109,7 @@ public class Villager : MonoBehaviour
                     startNode = pathFinding.finish;
                 }
 
-                if (pathFinding.Find(startNode, oreMine))
+                if (pathFinding.Find(startNode, oreMine, ID))
                 {
                     Debug.Log("FOUND MINE BOYS");
                     pathFinding.start = startNode;
@@ -110,6 +125,7 @@ public class Villager : MonoBehaviour
                 {
                     Debug.Log("couldnt find path FOR MINES");
                     unavailableNodes.Add(oreMine);
+                    pathFinding.finish = originalNode;
                     mineSeen = false;
                 }
             }
@@ -124,7 +140,7 @@ public class Villager : MonoBehaviour
         pathFinding.start = pathFinding.finish;
         pathFinding.finish = SearchRandomNodeFromRadius();
         Node originalNode = pathFinding.start;
-        if (pathFinding.Find(pathFinding.start, pathFinding.finish))
+        if (pathFinding.Find(pathFinding.start, pathFinding.finish, ID))
         {
             pathFinding.canGo = true;
             pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;

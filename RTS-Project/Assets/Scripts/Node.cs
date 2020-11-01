@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
+    [System.Serializable]
+    public class nodeParent 
+    {
+        public int villagerID;
+        public GameObject parent;
+    };
+
     public float neighbourRadius;
     public float gCost = float.MaxValue;
     public float hCost = float.MaxValue;
     public float fCost = float.MaxValue;
     
     public List<GameObject> neighbours = new List<GameObject>();
-    public GameObject nodeParent;
+    public List<nodeParent> nodesParent = new List<nodeParent>();
     public bool isWalkable;
 
     // Start is called before the first frame update
@@ -68,5 +75,34 @@ public class Node : MonoBehaviour
     public void SetfCost()
     {
         fCost = gCost + hCost;
+    }
+
+    public nodeParent GetParent(int ID)
+    {
+        nodeParent newNode = new nodeParent();
+        newNode.villagerID = -1;
+        for (int i = 0; i < nodesParent.Count; i++)
+        {
+            if(nodesParent[i].villagerID == ID)
+            {
+                newNode = nodesParent[i];
+                i = nodesParent.Count;
+            }
+        }
+
+        return newNode;
+    }
+    public void CleanParent(int ID)
+    {
+        for (int i = 0; i < nodesParent.Count; i++)
+        {
+            if (nodesParent[i].villagerID == ID)
+            {
+                nodesParent[i].parent = null;
+                i = nodesParent.Count;
+            }
+        }
+
+        
     }
 }
