@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class OreMine : MonoBehaviour
 {
-    public bool isExplored;
+    public bool cantBeMine;
+    public bool isMarked;
     public MeshRenderer mesh;
-
+    public GameObject currentFlag;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +17,33 @@ public class OreMine : MonoBehaviour
     private void OnEnable()
     {
         // Mine Activated
-        Debug.Log("Mine Activated");
-        mesh.material.color = Color.red;
-        isExplored = false;
+        if(!cantBeMine)
+        {
+            Debug.Log("Mine Activated");
+            tag = "Mine";
+            mesh.material.color = Color.red;
+            isMarked = false;
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnDisable()
+    {
+        if (!cantBeMine)
+        {
+            // Mine Destroyed
+            Debug.Log("Mine Destroyed");
+            tag = "Node";
+            mesh.material.color = Color.black;
+            //isMarked = false;
+            Destroy(currentFlag);
+        }
+            
     }
 }

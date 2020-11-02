@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MineSpawner : MonoBehaviour
 {
-    public int currentMines;
+    public int currentUnexploredMines;
     public int maxMines;
+    public int maxUnexploredMines;
     public float minTime;
     public float maxTime;
+    public List<GameObject> mines = new List<GameObject>();
 
     private Grid grid;
     private float finalTime;
@@ -17,12 +19,13 @@ public class MineSpawner : MonoBehaviour
     {
         grid = Grid.Get();
         SetNewTimer();
+        MarkBehaviour.OnMarkDone += SubstractUnexploredMines;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentMines < maxMines)
+        if(currentUnexploredMines < maxUnexploredMines && mines.Count < maxMines)
         {
             spawnTimer += Time.deltaTime;
 
@@ -41,6 +44,19 @@ public class MineSpawner : MonoBehaviour
         spawnTimer = 0;
     }
 
+    private void DeleteMine(GameObject mine)
+    {
+        if(mines.Contains(mine))
+        {
+            mines.Remove(mine);
+        }
+    }
+
+    private void SubstractUnexploredMines(GameObject mine)
+    {
+        currentUnexploredMines--;
+    }
+
     private void SpawnMine()
     {
         if(grid)
@@ -51,14 +67,20 @@ public class MineSpawner : MonoBehaviour
             {
                 OreMine o = n.GetComponent<OreMine>();
 
-                if (!o.enabled)
+                if (!o.enabled && n.isWalkable)
                     allNormalNodes.Add(n);
             }
 
             int randomIndex = Random.Range(0, allNormalNodes.Count);
             allNormalNodes[randomIndex].GetComponent<OreMine>().enabled = true;
-            currentMines++;
+            mines.Add(allNormalNodes[randomIndex].gameObject);
+            currentUnexploredMines++;
 
         }
+    }
+
+    private void OnDestroy()
+    {
+        MarkBehaviour.OnMarkDone -= SubstractUnexploredMines;
     }
 }

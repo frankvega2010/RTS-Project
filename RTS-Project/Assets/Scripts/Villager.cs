@@ -3,28 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PathfindingBehaviour))]
-public class Villager : MonoBehaviour
+public class Villager : NPC
 {
-    public float sightRadius;
-    public float walkSpeed;
-    public bool autoFindPath;
-    public Sight sight;
-    public bool mineSeen;
-    public Node oreMine;
-    public int ID;
-    public Color color;
-    private PathfindingBehaviour pathFinding;
-    public List<Node> unavailableNodes;
+   // [Header("Private Variables")]
     
 
     // Start is called before the first frame update
-    void Start()
+    protected new void Start()
     {
-        pathFinding = GetComponent<PathfindingBehaviour>();
+        base.Start();
+
         mineSeen = false;
-        unavailableNodes = new List<Node>();
         Invoke("InitialSearch", 0.1f);
-        
     }
 
     // Update is called once per frame
@@ -49,12 +39,6 @@ public class Villager : MonoBehaviour
                         }
                     }
                 }
-
-                /*if (n.nodeParent)
-                {
-                    Debug.DrawLine(n.transform.position, n.nodeParent.transform.position, Color.green);
-                }*/
-
             }
 
             SearchForMine();
@@ -89,7 +73,7 @@ public class Villager : MonoBehaviour
         }
     }
 
-    public bool SearchForMine()
+    public override bool SearchForMine()
     {
         if (!mineSeen)
         {
@@ -100,7 +84,7 @@ public class Villager : MonoBehaviour
             {
                 Node startNode = null;
 
-                if(pathFinding.choosenPath[pathFinding.waypointIndex])
+                if (pathFinding.choosenPath[pathFinding.waypointIndex])
                 {
                     startNode = pathFinding.choosenPath[pathFinding.waypointIndex];
                 }
@@ -132,111 +116,5 @@ public class Villager : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void SearchNewPath()
-    {
-        
-        pathFinding.start = pathFinding.finish;
-        pathFinding.finish = SearchRandomNodeFromRadius();
-        Node originalNode = pathFinding.start;
-        if (pathFinding.Find(pathFinding.start, pathFinding.finish, ID))
-        {
-            pathFinding.canGo = true;
-            pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
-        }
-        else
-        {
-            Debug.Log("couldnt find path I think");
-            pathFinding.canGo = false;
-            transform.rotation *= Quaternion.Euler(0, 180, 0);
-            pathFinding.finish = originalNode;
-            SearchNewPath();
-        }
-    }
-
-    public void InitialSearch()
-    {
-        pathFinding.finish = SearchRandomNodeFromRadius();
-        transform.position = pathFinding.finish.transform.position;
-        if (autoFindPath)
-        {
-            SearchNewPath();
-        }
-    }
-
-    public bool isNodeOnUnavailableList(Node currentNode)
-    {
-        foreach (Node n in unavailableNodes)
-        {
-            if(n == currentNode)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public Node SearchRandomNodeFromFOV()
-    {
-        if (sight.objectsFound.Count > 0)
-        {
-            List<Node> pointsFound = new List<Node>();
-
-            foreach (GameObject g in sight.objectsFound)
-            {
-                Node n = g.GetComponent<Node>();
-                if (n != pathFinding.start || n != pathFinding.finish && n.isWalkable)
-                {
-                    pointsFound.Add(n);
-                }
-            }
-
-            if (pointsFound.Count > 0)
-            {
-                int randomIndex = Random.Range(0, pointsFound.Count - 1);
-
-                return pointsFound[randomIndex];
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-
-        return null;
-    }
-
-    public Node SearchRandomNodeFromRadius()
-    {
-        Grid grid = Grid.Get();
-        if (grid)
-        {
-            List<Node> pointsFound = new List<Node>();
-            foreach (Node n in grid.nodes)
-            {
-                if (n != pathFinding.start || n != pathFinding.finish)
-                {
-                    if (Vector3.Distance(transform.position, n.transform.position) <= sightRadius)
-                    {
-                        if(n.gameObject.tag != sight.tagToFind && n.isWalkable)
-                        {
-                            pointsFound.Add(n);
-                        }
-
-                        //pointsFound.Add(n);
-
-                    }
-                }
-            }
-
-            int randomIndex = Random.Range(0, pointsFound.Count);
-
-            return pointsFound[randomIndex];
-        }
-
-        return null;
     }
 }
