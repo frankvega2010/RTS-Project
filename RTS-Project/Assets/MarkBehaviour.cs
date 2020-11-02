@@ -13,6 +13,7 @@ public class MarkBehaviour : StateMachineBehaviour
         //Change Icon
         Debug.Log("Marking");
         Explorer explorer = animator.GetComponent<Explorer>();
+        explorer.unavailableNodes.Clear();
         //explorer.SearchNewPath();
     }
 

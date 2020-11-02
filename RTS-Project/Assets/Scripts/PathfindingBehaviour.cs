@@ -46,7 +46,7 @@ public class PathfindingBehaviour : MonoBehaviour
     public bool Find(Node start, Node finish, int ID)
     {
         //List<Node> finalPath = new List<Node>();
-        if (start && finish)
+        if ((start && finish) && start != finish)
         {
             grid.CleanCosts();
             grid.CleanParents(ID);
@@ -80,6 +80,7 @@ public class PathfindingBehaviour : MonoBehaviour
                         if (n.isWalkable && !closedNodes.Contains(n))
                         {
                             //Check if new path is shorter
+                            current.SetgCost(n);
                             float gCost = current.gCost + Vector3.Distance(current.transform.position, n.transform.position);
                             if (gCost < n.gCost || !openNodes.Contains(n))
                             {
@@ -97,7 +98,7 @@ public class PathfindingBehaviour : MonoBehaviour
                                     }
                                 }
 
-                                //Debug.DrawRay(current.transform.position, direction.normalized * raycastDistance, Color.white);
+                                Debug.DrawRay(current.transform.position, direction.normalized * raycastDistance, Color.white);
 
                                 if (!hitObstacle)
                                 {

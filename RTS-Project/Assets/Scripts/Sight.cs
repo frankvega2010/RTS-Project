@@ -33,17 +33,13 @@ public class Sight : MonoBehaviour
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
 
-            if (angle < fovAngle * 0.5f)
+            if (angle < fovAngle/* * 0.5f*/)
             {
                 RaycastHit hit;
 
                 if (Physics.Raycast(transform.position, direction.normalized, out hit, detectionCol.radius * 1.2f, mask))
                 {
-                    if (hit.transform.gameObject.tag == "Wall")
-                    {
-                        //?
-                    }
-                    else if (hit.transform.gameObject.tag == tagToFind)
+                    if (hit.transform.gameObject.tag == tagToFind)
                     {
                         objectInSight = true;
                         if(!objectsFound.Contains(hit.transform.gameObject))

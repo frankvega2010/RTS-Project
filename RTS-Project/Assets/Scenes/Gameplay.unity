@@ -9637,7 +9637,7 @@ PrefabInstance:
     - target: {fileID: 2816427704757745712, guid: 70c8d05f64b8bf642b5276304d71cefe,
         type: 3}
       propertyPath: raycastDistance
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4726086997120250277, guid: 70c8d05f64b8bf642b5276304d71cefe,
         type: 3}
@@ -9667,7 +9667,7 @@ PrefabInstance:
     - target: {fileID: 4726086997120250277, guid: 70c8d05f64b8bf642b5276304d71cefe,
         type: 3}
       propertyPath: sightRadius
-      value: 20
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70c8d05f64b8bf642b5276304d71cefe, type: 3}
