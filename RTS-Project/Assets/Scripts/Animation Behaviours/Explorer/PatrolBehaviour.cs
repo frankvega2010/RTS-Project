@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PatrolBehaviour : StateMachineBehaviour
 {
+    private Explorer explorer;
+
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Change Icon
         Debug.Log("Patrolling");
-        Explorer explorer = animator.GetComponent<Explorer>();
+        explorer = animator.GetComponent<Explorer>();
         if(!explorer.doOnce)
         {
             explorer.InitialSearch();
@@ -24,8 +27,6 @@ public class PatrolBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Explorer explorer = animator.GetComponent<Explorer>();
-
         if (explorer.pathFinding.choosenPath.Count > 0)
         {
             foreach (Node n in explorer.pathFinding.choosenPath)

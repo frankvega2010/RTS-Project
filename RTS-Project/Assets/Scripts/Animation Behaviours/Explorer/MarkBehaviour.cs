@@ -7,12 +7,14 @@ public class MarkBehaviour : StateMachineBehaviour
     public delegate void OnMarkAction(GameObject node);
     public static OnMarkAction OnMarkDone;
 
+    private Explorer explorer;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Change Icon
         Debug.Log("Marking");
-        Explorer explorer = animator.GetComponent<Explorer>();
+        explorer = animator.GetComponent<Explorer>();
         explorer.unavailableNodes.Clear();
         //explorer.SearchNewPath();
     }
@@ -20,8 +22,6 @@ public class MarkBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Explorer explorer = animator.GetComponent<Explorer>();
-
         if (explorer.pathFinding.choosenPath.Count > 0)
         {
             foreach (Node n in explorer.pathFinding.choosenPath)
