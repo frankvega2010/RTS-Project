@@ -20,6 +20,7 @@ public class MineSpawner : MonoBehaviour
         grid = Grid.Get();
         SetNewTimer();
         MarkBehaviour.OnMarkDone += SubstractUnexploredMines;
+        MiningAction.OnDestroyMine += DeleteMine;
     }
 
     // Update is called once per frame
@@ -48,6 +49,8 @@ public class MineSpawner : MonoBehaviour
     {
         if(mines.Contains(mine))
         {
+            OreMine oreMine = mine.GetComponent<OreMine>();
+            oreMine.enabled = false;
             mines.Remove(mine);
         }
     }
@@ -82,5 +85,6 @@ public class MineSpawner : MonoBehaviour
     private void OnDestroy()
     {
         MarkBehaviour.OnMarkDone -= SubstractUnexploredMines;
+        MiningAction.OnDestroyMine -= DeleteMine;
     }
 }

@@ -98,7 +98,7 @@ public class PathfindingBehaviour : MonoBehaviour
                                     }
                                 }
 
-                                Debug.DrawRay(current.transform.position, direction.normalized * raycastDistance, Color.white);
+                                //Debug.DrawRay(current.transform.position, direction.normalized * raycastDistance, Color.white);
 
                                 if (!hitObstacle)
                                 {

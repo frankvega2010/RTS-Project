@@ -12,7 +12,7 @@ public class NPC : MonoBehaviour
     [Header("Component Config")]
     public Sight sight;
 
-
+    public static int NPCCount;
     public int ID;
     public Color color;
     public bool mineSeen;
@@ -25,6 +25,8 @@ public class NPC : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
+        NPCCount++;
+        ID = NPCCount;
         pathFinding = GetComponent<PathfindingBehaviour>();
         unavailableNodes = new List<Node>();
     }

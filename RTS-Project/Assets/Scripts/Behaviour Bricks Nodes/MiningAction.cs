@@ -8,6 +8,9 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
 [Help("Extracts gold from a mine until it reaches its capacity or the mine is out of gold.")]
 public class MiningAction : BasePrimitiveAction
 {
+    public delegate void OnMiningAction(GameObject mine);
+    public static OnMiningAction OnDestroyMine;
+
     // Define the input parameter "bullet" (the prefab to be cloned).
     [InParam("VillagerGO")]
     public GameObject villagerGO;
@@ -42,6 +45,10 @@ public class MiningAction : BasePrimitiveAction
                 if (amountExtracted < villager.extractAmount)
                 {
                     //Mine is empty, returns to base
+                    if(OnDestroyMine != null)
+                    {
+                        OnDestroyMine(villager.oreMine.gameObject);
+                    }
                     villager.mineSeen = false;
                     villager.oreMine = null;
                     return TaskStatus.COMPLETED;
