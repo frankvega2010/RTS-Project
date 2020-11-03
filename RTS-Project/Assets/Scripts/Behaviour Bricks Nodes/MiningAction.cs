@@ -23,7 +23,7 @@ public class MiningAction : BasePrimitiveAction
     public override void OnStart()
     {
         villager = villagerGO.GetComponent<Villager>();
-        animator = villagerGO.GetComponent<Animator>();
+        animator = villager.animator;
         villager.unavailableNodes.Clear();
         oreMine = villager.oreMine.GetComponent<OreMine>();
         Debug.Log("MINING");

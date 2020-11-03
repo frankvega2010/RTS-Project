@@ -19,7 +19,7 @@ public class GoToMineAction : BasePrimitiveAction
     public override void OnStart()
     {
         villager = villagerGO.GetComponent<Villager>();
-        animator = villagerGO.GetComponent<Animator>();
+        animator = villager.animator;
         villager.unavailableNodes.Clear();
         Debug.Log("GOING TO MINE");
         base.OnStart();

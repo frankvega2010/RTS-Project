@@ -11,7 +11,7 @@ public class NPC : MonoBehaviour
 
     [Header("Component Config")]
     public Sight sight;
-
+    public Animator animator;
     public static int NPCCount;
     public int ID;
     public Color color;

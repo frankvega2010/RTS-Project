@@ -7,10 +7,10 @@ public class OreMine : MonoBehaviour
     public float maxGold;
     public bool cantBeMine;
 
-    //[HideInInspector]
+    [HideInInspector]
     public float currentGold;
     public bool isMarked;
-    public MeshRenderer mesh;
+    public GameObject mineModel;
     public GameObject currentFlag;
     // Start is called before the first frame update
     void Start()
@@ -24,8 +24,9 @@ public class OreMine : MonoBehaviour
         if(!cantBeMine)
         {
             Debug.Log("Mine Activated");
-            tag = "Mine";
-            mesh.material.color = Color.red;
+            gameObject.tag = "Mine";
+            mineModel.SetActive(true);
+            //mesh.material.color = Color.red;
             isMarked = false;
         }
         
@@ -63,8 +64,9 @@ public class OreMine : MonoBehaviour
         {
             // Mine Destroyed
             Debug.Log("Mine Destroyed");
-            tag = "Node";
-            mesh.material.color = Color.black;
+            gameObject.tag = "Node";
+            mineModel.SetActive(false);
+            //mesh.material.color = Color.black;
             //isMarked = false;
             Destroy(currentFlag);
         }

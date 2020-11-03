@@ -266,6 +266,6 @@ MonoBehaviour:
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"31\" />\r\n         
     <SequenceNode id=\"20\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n 
     </editorInfo>\r\n</BehaviorBricks>"
-  zoom: 0.7
+  zoom: 0.5
   subslist: []
   _guid: ae0be96cba1fa8044a2abcd3ae200e20

@@ -14,7 +14,7 @@ public class MarkBehaviour : StateMachineBehaviour
     {
         //Change Icon
         Debug.Log("Marking");
-        explorer = animator.GetComponent<Explorer>();
+        explorer = animator.transform.parent.GetComponentInParent<Explorer>();
         explorer.unavailableNodes.Clear();
         //explorer.SearchNewPath();
     }
@@ -57,6 +57,7 @@ public class MarkBehaviour : StateMachineBehaviour
                             //Plantar banderin
                             GameObject flag = Instantiate(explorer.flagPrefab, explorer.oreMine.transform.position, explorer.oreMine.transform.rotation);
                             explorer.oreMine.GetComponent<OreMine>().currentFlag = flag;
+                            //explorer.oreMine.GetComponent<OreMine>().mineModel.SetActive(true);
                             explorer.oreMine.GetComponent<OreMine>().isMarked = true;
 
                             if(OnMarkDone != null)
@@ -73,7 +74,7 @@ public class MarkBehaviour : StateMachineBehaviour
                             if (!explorer.SearchForMine())
                             {
                                 //Pasar a patrolling
-                                animator.SetTrigger("Patrol");
+                                explorer.animator.SetTrigger("Patrol");
                             }
                         }
                     }

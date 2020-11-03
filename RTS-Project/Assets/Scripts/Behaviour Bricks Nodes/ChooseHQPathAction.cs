@@ -13,11 +13,13 @@ public class ChooseHQPathAction : BasePrimitiveAction
     public GameObject villagerGO;
 
     private Villager villager;
+    private Animator animator;
 
     // Initialization method. If not established, we look for the shooting point.
     public override void OnStart()
     {
         villager = villagerGO.GetComponent<Villager>();
+        animator = villager.animator;
         base.OnStart();
     }
 
@@ -27,6 +29,7 @@ public class ChooseHQPathAction : BasePrimitiveAction
         if(villager.SearchNewPathToHQ())
         {
             // The action is completed. We must inform the execution engine.
+            animator.SetTrigger("Return");
             return TaskStatus.COMPLETED;
         }
         else

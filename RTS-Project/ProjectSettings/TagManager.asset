@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Projectile
+  - TutorialRequirement
   - Node
-  - Mine
   - Wall
+  - Mine
   layers:
   - Default
   - TransparentFX
@@ -16,12 +18,12 @@ TagManager:
   - UI
   - 
   - 
+  - ConnectivityFeature
+  - Player
+  - Hazard
+  - Environment
   - Node
   - Obstacle
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 

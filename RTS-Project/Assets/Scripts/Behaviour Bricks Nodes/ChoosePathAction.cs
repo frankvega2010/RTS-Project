@@ -13,12 +13,13 @@ public class ChoosePathAction : BasePrimitiveAction
     public GameObject villagerGO;
 
     private Villager villager;
+    private Animator animator;
 
     // Initialization method. If not established, we look for the shooting point.
     public override void OnStart()
     {
         villager = villagerGO.GetComponent<Villager>();
-
+        animator = villager.animator;
         base.OnStart();
     }
 
@@ -41,6 +42,7 @@ public class ChoosePathAction : BasePrimitiveAction
         else
         {
             villager.InitialSearch();
+            animator.SetTrigger("Patrol");
             villager.doOnce = true;
             return TaskStatus.COMPLETED;
         }

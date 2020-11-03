@@ -6,6 +6,7 @@ public class Explorer : NPC
 {
     [Header("Explorer Config")]
     public GameObject flagPrefab;
+    
 
     // Start is called before the first frame update
     protected new void Start()

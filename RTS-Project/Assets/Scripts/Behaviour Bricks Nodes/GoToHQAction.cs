@@ -21,9 +21,10 @@ public class GoToHQAction : BasePrimitiveAction
     public override void OnStart()
     {
         villager = villagerGO.GetComponent<Villager>();
-        animator = villagerGO.GetComponent<Animator>();
+        animator = villager.animator;
         oreMine = villager.oreMine.GetComponent<OreMine>();
         villager.unavailableNodes.Clear();
+        //animator.SetTrigger("Return");
         base.OnStart();
     }
 
@@ -82,8 +83,8 @@ public class GoToHQAction : BasePrimitiveAction
                                 Debug.Log("Gold mine is NOT empty");
                             }
                             villager.doOnceMine = false;
-                            animator.SetTrigger("Deliver");
-
+                            // animator.SetTrigger("Deliver");
+                            animator.SetTrigger("Patrol");
                             return TaskStatus.COMPLETED;
                         }
                     }

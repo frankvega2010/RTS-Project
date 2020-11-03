@@ -17,6 +17,7 @@ public class Villager : NPC
     public HQ hq;
     public Node hqSpawnNode;
     public bool doOnceMine;
+    
     // Start is called before the first frame update
     protected new void Start()
     {

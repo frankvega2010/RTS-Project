@@ -19,7 +19,7 @@ public class ChooseMinePathAction : BasePrimitiveAction
     public override void OnStart()
     {
         villager = villagerGO.GetComponent<Villager>();
-        animator = villagerGO.GetComponent<Animator>();
+        animator = villager.animator;
         base.OnStart();
     }
 
@@ -31,7 +31,8 @@ public class ChooseMinePathAction : BasePrimitiveAction
             villager.doOnceMine = true;
             if (villager.SearchForMine(villager.oreMine))
             {
-                animator.SetTrigger("GoToMine");
+               // animator.SetTrigger("GoToMine");
+                animator.SetTrigger("Patrol");
                 // The action is completed. We must inform the execution engine.
                 return TaskStatus.COMPLETED;
             }

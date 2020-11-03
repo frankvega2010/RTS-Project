@@ -12,8 +12,8 @@ public class PatrolBehaviour : StateMachineBehaviour
     {
         //Change Icon
         Debug.Log("Patrolling");
-        explorer = animator.GetComponent<Explorer>();
-        if(!explorer.doOnce)
+        explorer = animator.transform.parent.GetComponentInParent<Explorer>();
+        if (!explorer.doOnce)
         {
             explorer.InitialSearch();
             explorer.doOnce = true;
@@ -46,7 +46,7 @@ public class PatrolBehaviour : StateMachineBehaviour
             if(explorer.SearchForMine())
             {
                 //Pasar a Marking
-                animator.SetTrigger("Mark");
+                explorer.animator.SetTrigger("Mark");
             }
             else
             {
@@ -73,7 +73,7 @@ public class PatrolBehaviour : StateMachineBehaviour
                                 else
                                 {
                                     //Pasar a Marking
-                                    animator.SetTrigger("Mark");
+                                    explorer.animator.SetTrigger("Mark");
                                 }
                             }
                         }

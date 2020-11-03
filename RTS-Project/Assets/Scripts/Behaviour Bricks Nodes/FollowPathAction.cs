@@ -19,7 +19,7 @@ public class FollowPathAction : BasePrimitiveAction
     public override void OnStart()
     {
         villager = villagerGO.GetComponent<Villager>();
-        animator = villagerGO.GetComponent<Animator>();
+        animator = villager.animator;
         base.OnStart();
     }
 
@@ -45,7 +45,7 @@ public class FollowPathAction : BasePrimitiveAction
             if(villager.SearchForMine())
             {
                 //Pasar a Mining, se reinicia  el behaviour tree y da resultado SUCCESS
-                animator.SetTrigger("GoToMine");
+               // animator.SetTrigger("GoToMine");
                 return TaskStatus.COMPLETED;
             }
             else
@@ -69,7 +69,7 @@ public class FollowPathAction : BasePrimitiveAction
                                 if (villager.SearchForMine())
                                 {
                                     //Pasar a Mining,
-                                    animator.SetTrigger("GoToMine");
+                                    //animator.SetTrigger("Patrol");
                                 }
 
                                 // se reinicia  el behaviour tree y da resultado SUCCESS
