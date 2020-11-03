@@ -115,7 +115,7 @@ MonoBehaviour:
   neighbours:
   - {fileID: 0}
   - {fileID: 0}
-  nodeParent: {fileID: 0}
+  nodesParent: []
   isWalkable: 0
 --- !u!54 &-1223099230753608054
 Rigidbody:
@@ -145,5 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec9b0f81d352a8488e244e44fca9f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isExplored: 0
+  maxGold: 500
+  cantBeMine: 0
+  currentGold: 0
+  isMarked: 0
   mesh: {fileID: 4088992556155723292}
+  currentFlag: {fileID: 0}

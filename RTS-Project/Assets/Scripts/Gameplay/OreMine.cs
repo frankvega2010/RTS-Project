@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class OreMine : MonoBehaviour
 {
+    public float maxGold;
     public bool cantBeMine;
+
+    //[HideInInspector]
+    public float currentGold;
     public bool isMarked;
     public MeshRenderer mesh;
     public GameObject currentFlag;
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentGold = maxGold;
     }
 
     private void OnEnable()
@@ -31,6 +35,26 @@ public class OreMine : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public float ExtractGold(float amount)
+    {
+        if(currentGold > 0)
+        {
+            if (amount <= currentGold)
+            {
+                currentGold -= amount;
+                return amount;
+            }
+            else
+            {
+                float goldToGive = currentGold;
+                currentGold = 0;
+                return goldToGive;
+            }
+        }
+
+        return 0;
     }
 
     private void OnDisable()

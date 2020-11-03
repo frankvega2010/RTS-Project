@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 7386916068311599497}
   - component: {fileID: 7386916068311599511}
   - component: {fileID: 7386916068311599496}
+  - component: {fileID: 1699006732}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,7 +157,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7386916068311599498}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -7.347, z: -11.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -206,9 +207,87 @@ MonoBehaviour:
   walkSpeed: 15
   autoFindPath: 1
   sight: {fileID: 7386916067622496390}
+  ID: 0
+  color: {r: 1, g: 0.07075471, b: 0.07075471, a: 1}
   mineSeen: 0
   oreMine: {fileID: 0}
+  doOnce: 0
+  pathFinding: {fileID: 0}
   unavailableNodes: []
+  extractTime: 1
+  extractAmount: 1
+  goldCapacity: 100
+  goldHolding: 0
+  extractTimer: 0
+  hq: {fileID: 0}
+  hqSpawnNode: {fileID: 0}
+--- !u!114 &1699006732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386916068311599498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 422fb6956201c7944ae2113a1a53b0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTasksPerTick: 500
+  behavior: {fileID: 11400000, guid: ae0be96cba1fa8044a2abcd3ae200e20, type: 2}
+  paused: 0
+  restartWhenFinished: 0
+  blackboard:
+    intParams: 
+    intParamsNames: []
+    intParamsLostDefaultValue: 
+    boolParams: 01
+    boolParamsNames:
+    - initialState
+    boolParamsLostDefaultValue: 
+    floatParams: []
+    floatParamsNames: []
+    floatParamsLostDefaultValue: 
+    stringParams: []
+    stringParamsNames: []
+    stringParamsLostDefaultValue: 
+    colorParams: []
+    colorParamsNames: []
+    colorParamsLostDefaultValue: 
+    objectParams:
+    - {fileID: 7386916068311599498}
+    objectParamsNames:
+    - Villager
+    objectParamsLostDefaultValue: 
+    layerMaskParams: []
+    layerMaskParamsNames: []
+    layerMaskParamsLostDefaultValue: 
+    enumParamsNames: []
+    enumParamsLostDefaultValue: 
+    vector2Params: []
+    vector2ParamsNames: []
+    vector2ParamsLostDefaultValue: 
+    vector3Params: []
+    vector3ParamsNames: []
+    vector3ParamsLostDefaultValue: 
+    vector4Params: []
+    vector4ParamsNames: []
+    vector4ParamsLostDefaultValue: 
+    rectParams: []
+    rectParamsNames: []
+    rectParamsLostDefaultValue: 
+    animationCurveParams: []
+    animationCurveParamsNames: []
+    animationCurveParamsLostDefaultValue: 
+    boundsParams: []
+    boundsParamsNames: []
+    boundsParamsLostDefaultValue: 
+    gradientParams: []
+    gradientParamsNames: []
+    gradientParamsLostDefaultValue: 
+    quaternionParams: []
+    quaternionParamsNames: []
+    quaternionParamsLostDefaultValue: 
 --- !u!1 &7386916068590589224
 GameObject:
   m_ObjectHideFlags: 0

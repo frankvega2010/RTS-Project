@@ -12,7 +12,7 @@ public class NPC : MonoBehaviour
     [Header("Component Config")]
     public Sight sight;
 
-    [HideInInspector]
+
     public int ID;
     public Color color;
     public bool mineSeen;
@@ -53,12 +53,35 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            Debug.Log("couldnt find path I think");
+            Debug.Log("couldnt find path");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
             pathFinding.finish = originalNode;
             SearchNewPath();
         }
+    }
+
+    public bool SearchNewPathOnce()
+    {
+        pathFinding.start = pathFinding.finish;
+        pathFinding.finish = SearchRandomNodeFromRadius();
+        Node originalNode = pathFinding.start;
+        if (pathFinding.Find(pathFinding.start, pathFinding.finish, ID))
+        {
+            pathFinding.canGo = true;
+            pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
+            return true;
+        }
+        else
+        {
+            Debug.Log("couldnt find path");
+            pathFinding.canGo = false;
+            transform.rotation *= Quaternion.Euler(0, 180, 0);
+            pathFinding.finish = originalNode;
+            //SearchNewPath();
+        }
+
+        return false;
     }
 
     public void InitialSearch()

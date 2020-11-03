@@ -38,7 +38,15 @@ public class MineFoundCondition : ConditionBase
                     return false;
             }
 
-            return true;
+            if(initialState)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
         }
     }
 } // class MineFoundCondition 

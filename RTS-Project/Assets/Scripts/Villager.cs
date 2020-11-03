@@ -5,22 +5,33 @@ using UnityEngine;
 [RequireComponent(typeof(PathfindingBehaviour))]
 public class Villager : NPC
 {
-   // [Header("Private Variables")]
-    
+    [Header("Villager Config")]
+    public float extractTime;
+    public float extractAmount;
+    public float goldCapacity;
 
+
+    public float goldHolding;
+    public float extractTimer;
+    [HideInInspector]
+    public HQ hq;
+    public Node hqSpawnNode;
+    public bool doOnceMine;
     // Start is called before the first frame update
     protected new void Start()
     {
         base.Start();
 
         mineSeen = false;
-        Invoke("InitialSearch", 0.1f);
+        hq = GameManager.Get().hq;
+        hqSpawnNode = hq.villagerSpawnPoint.GetComponent<Node>();
+        //Invoke("InitialSearch", 0.1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             SearchNewPath();
         }
@@ -70,7 +81,7 @@ public class Villager : NPC
                     }
                 }
             }
-        }
+        }*/
     }
 
     public override bool SearchForMine()
@@ -82,37 +93,112 @@ public class Villager : NPC
             oreMine = SearchRandomNodeFromFOV();
             if (!isNodeOnUnavailableList(oreMine) && oreMine != null)
             {
-                Node startNode = null;
+                OreMine oreMineComp = oreMine.GetComponent<OreMine>();
+                if(oreMineComp.isMarked)
+                {
+                    Node startNode = null;
 
-                if (pathFinding.choosenPath[pathFinding.waypointIndex])
-                {
-                    startNode = pathFinding.choosenPath[pathFinding.waypointIndex];
-                }
-                else
-                {
-                    startNode = pathFinding.finish;
-                }
+                    if (pathFinding.choosenPath[pathFinding.waypointIndex])
+                    {
+                        startNode = pathFinding.choosenPath[pathFinding.waypointIndex];
+                    }
+                    else
+                    {
+                        startNode = pathFinding.finish;
+                    }
 
-                if (pathFinding.Find(startNode, oreMine, ID))
-                {
-                    Debug.Log("FOUND MINE BOYS");
-                    pathFinding.start = startNode;
-                    pathFinding.finish = oreMine;
-                    mineSeen = true;
-                    pathFinding.canGo = true;
-                    pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
-                    unavailableNodes.Clear();
-                    unavailableNodes.Add(oreMine);
-                    return true;
-                }
-                else
-                {
-                    Debug.Log("couldnt find path FOR MINES");
-                    unavailableNodes.Add(oreMine);
-                    pathFinding.finish = originalNode;
-                    mineSeen = false;
+                    if (pathFinding.Find(startNode, oreMine, ID))
+                    {
+                        Debug.Log("FOUND MINE BOYS");
+                        pathFinding.start = startNode;
+                        pathFinding.finish = oreMine;
+                        mineSeen = true;
+                        pathFinding.canGo = true;
+                        pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
+                        unavailableNodes.Clear();
+                        unavailableNodes.Add(oreMine);
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.Log("couldnt find path FOR MINES");
+                        unavailableNodes.Add(oreMine);
+                        pathFinding.finish = originalNode;
+                        mineSeen = false;
+                    }
                 }
             }
+        }
+
+        return false;
+    }
+
+    public bool SearchForMine(Node newOreMine)
+    {
+        if (mineSeen)
+        {
+            pathFinding.start = pathFinding.finish;
+            Node originalNode = pathFinding.start;
+            oreMine = newOreMine;
+            if (!isNodeOnUnavailableList(oreMine) && oreMine != null)
+            {
+                OreMine oreMineComp = oreMine.GetComponent<OreMine>();
+                if (oreMineComp.isMarked)
+                {
+                    Node startNode = null;
+
+                    if (pathFinding.choosenPath[pathFinding.waypointIndex])
+                    {
+                        startNode = pathFinding.choosenPath[pathFinding.waypointIndex];
+                    }
+                    else
+                    {
+                        startNode = pathFinding.finish;
+                    }
+
+                    if (pathFinding.Find(startNode, oreMine, ID))
+                    {
+                        Debug.Log("FOUND MINE BOYS");
+                        pathFinding.start = startNode;
+                        pathFinding.finish = oreMine;
+                        mineSeen = true;
+                        pathFinding.canGo = true;
+                        pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
+                        unavailableNodes.Clear();
+                        unavailableNodes.Add(oreMine);
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.Log("couldnt find path FOR MINES");
+                        unavailableNodes.Add(oreMine);
+                        pathFinding.finish = originalNode;
+                        mineSeen = false;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public bool SearchNewPathToHQ()
+    {
+        pathFinding.start = pathFinding.finish;
+        pathFinding.finish = hqSpawnNode;
+        Node originalNode = pathFinding.start;
+        if (pathFinding.Find(pathFinding.start, pathFinding.finish, ID))
+        {
+            pathFinding.canGo = true;
+            pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
+            return true;
+        }
+        else
+        {
+            Debug.Log("couldnt find path");
+            pathFinding.canGo = false;
+            transform.rotation *= Quaternion.Euler(0, 180, 0);
+            pathFinding.finish = originalNode;
         }
 
         return false;
