@@ -13,7 +13,7 @@ public class MarkBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Change Icon
-        Debug.Log("Marking");
+        //Debug.Log("Marking");
         explorer = animator.transform.parent.GetComponentInParent<Explorer>();
         explorer.unavailableNodes.Clear();
         //explorer.SearchNewPath();
@@ -52,21 +52,21 @@ public class MarkBehaviour : StateMachineBehaviour
                         explorer.pathFinding.waypointIndex = 0;
                         explorer.pathFinding.canGo = false;
 
-                        if (explorer.pathFinding.choosenPath[explorer.pathFinding.waypointIndex] == explorer.oreMine)
+                        if (explorer.pathFinding.choosenPath[explorer.pathFinding.waypointIndex] == explorer.oreMineNode)
                         {
                             //Plantar banderin
-                            GameObject flag = Instantiate(explorer.flagPrefab, explorer.oreMine.transform.position, explorer.oreMine.transform.rotation);
-                            explorer.oreMine.GetComponent<OreMine>().currentFlag = flag;
-                            //explorer.oreMine.GetComponent<OreMine>().mineModel.SetActive(true);
-                            explorer.oreMine.GetComponent<OreMine>().isMarked = true;
+                            GameObject flag = Instantiate(explorer.flagPrefab, explorer.oreMineNode.transform.position, explorer.oreMineNode.transform.rotation);
+                            explorer.oreMineNode.GetComponent<OreMine>().currentFlag = flag;
+                            //explorer.oreMineNode.GetComponent<OreMine>().mineModel.SetActive(true);
+                            explorer.oreMineNode.GetComponent<OreMine>().isMarked = true;
 
                             if(OnMarkDone != null)
                             {
-                                OnMarkDone(explorer.oreMine.gameObject);
+                                OnMarkDone(explorer.oreMineNode.gameObject);
                             }
 
                             explorer.mineSeen = false;
-                            explorer.oreMine = null;
+                            explorer.oreMineNode = null;
                         }
 
                         if (explorer.autoFindPath)

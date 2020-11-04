@@ -22,9 +22,11 @@ public class GoToHQAction : BasePrimitiveAction
     {
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
-        oreMine = villager.oreMine.GetComponent<OreMine>();
+        oreMine = villager.oreMineNode.GetComponent<OreMine>();
         villager.unavailableNodes.Clear();
-        //animator.SetTrigger("Return");
+        animator.SetBool("Patrol2", false);
+        animator.SetBool("Mine2", false);
+        animator.SetBool("Return2", true);
         base.OnStart();
     }
 
@@ -63,10 +65,6 @@ public class GoToHQAction : BasePrimitiveAction
 
                         if (villager.pathFinding.choosenPath[villager.pathFinding.waypointIndex] == villager.hqSpawnNode)
                         {
-                            /*if (OnMarkDone != null)
-                            {
-                                OnMarkDone(explorer.oreMine.gameObject);
-                            }*/
 
                             //GOLD IS DELIVERED
                             villager.hq.DepositGold(villager.goldHolding);
@@ -74,17 +72,16 @@ public class GoToHQAction : BasePrimitiveAction
 
                             if (oreMine.currentGold <= 0)
                             {
-                                Debug.Log("Gold mine is empty");
+                                //Debug.Log("Gold mine is empty");
                                 villager.mineSeen = false;
-                                villager.oreMine = null;
+                                villager.oreMineNode = null;
                             }
                             else
                             {
-                                Debug.Log("Gold mine is NOT empty");
+                                //Debug.Log("Gold mine is NOT empty");
                             }
                             villager.doOnceMine = false;
-                            // animator.SetTrigger("Deliver");
-                            animator.SetTrigger("Patrol");
+                            villager.isReturning = false;
                             return TaskStatus.COMPLETED;
                         }
                     }

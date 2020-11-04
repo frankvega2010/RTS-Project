@@ -29,7 +29,7 @@ public class ChooseHQPathAction : BasePrimitiveAction
         if(villager.SearchNewPathToHQ())
         {
             // The action is completed. We must inform the execution engine.
-            animator.SetTrigger("Return");
+            //animator.SetTrigger("Return");
             return TaskStatus.COMPLETED;
         }
         else

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class OreMine : MonoBehaviour
 {
+    public delegate void OnOreMineAction(GameObject oreMineNode);
+    public static OnOreMineAction OnOreMineDisabled;
+
     public float maxGold;
     public bool cantBeMine;
 
-    [HideInInspector]
+    //[HideInInspector]
     public float currentGold;
     public bool isMarked;
     public GameObject mineModel;
@@ -23,9 +26,10 @@ public class OreMine : MonoBehaviour
         // Mine Activated
         if(!cantBeMine)
         {
-            Debug.Log("Mine Activated");
+            //Debug.Log("Mine Activated");
             gameObject.tag = "Mine";
             mineModel.SetActive(true);
+            currentGold = maxGold;
             //mesh.material.color = Color.red;
             isMarked = false;
         }
@@ -51,6 +55,12 @@ public class OreMine : MonoBehaviour
             {
                 float goldToGive = currentGold;
                 currentGold = 0;
+
+                if (OnOreMineDisabled != null)
+                {
+                    OnOreMineDisabled(gameObject);
+                }
+
                 return goldToGive;
             }
         }
@@ -63,12 +73,17 @@ public class OreMine : MonoBehaviour
         if (!cantBeMine)
         {
             // Mine Destroyed
-            Debug.Log("Mine Destroyed");
+            //Debug.Log("Mine Destroyed");
             gameObject.tag = "Node";
             mineModel.SetActive(false);
+            currentGold = 0;
             //mesh.material.color = Color.black;
             //isMarked = false;
             Destroy(currentFlag);
+            if(OnOreMineDisabled != null)
+            {
+                OnOreMineDisabled(gameObject);
+            }
         }
             
     }

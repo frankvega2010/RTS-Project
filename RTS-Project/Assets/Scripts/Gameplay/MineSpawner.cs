@@ -50,6 +50,7 @@ public class MineSpawner : MonoBehaviour
         if(mines.Contains(mine))
         {
             OreMine oreMine = mine.GetComponent<OreMine>();
+            oreMine.isMarked = false;
             oreMine.enabled = false;
             mines.Remove(mine);
         }

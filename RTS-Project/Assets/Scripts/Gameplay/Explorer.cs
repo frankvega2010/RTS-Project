@@ -26,10 +26,10 @@ public class Explorer : NPC
         {
             pathFinding.start = pathFinding.finish;
             Node originalNode = pathFinding.start;
-            oreMine = SearchRandomNodeFromFOV();
-            if (!isNodeOnUnavailableList(oreMine) && oreMine != null)
+            oreMineNode = SearchRandomNodeFromFOV();
+            if (!isNodeOnUnavailableList(oreMineNode) && oreMineNode != null)
             {
-                OreMine o = oreMine.GetComponent<OreMine>();
+                OreMine o = oreMineNode.GetComponent<OreMine>();
                 if(!o.isMarked)
                 {
                     Node startNode = null;
@@ -43,22 +43,22 @@ public class Explorer : NPC
                         startNode = pathFinding.finish;
                     }
 
-                    if (pathFinding.Find(startNode, oreMine, ID))
+                    if (pathFinding.Find(startNode, oreMineNode, ID))
                     {
-                        Debug.Log("FOUND MINE BOYS");
+                        //Debug.Log("FOUND MINE BOYS");
                         pathFinding.start = startNode;
-                        pathFinding.finish = oreMine;
+                        pathFinding.finish = oreMineNode;
                         mineSeen = true;
                         pathFinding.canGo = true;
                         pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
                         unavailableNodes.Clear();
-                        unavailableNodes.Add(oreMine);
+                        unavailableNodes.Add(oreMineNode);
                         return true;
                     }
                     else
                     {
-                        Debug.Log("couldnt find path FOR MINES");
-                        unavailableNodes.Add(oreMine);
+                        //Debug.Log("couldnt find path FOR MINES");
+                        unavailableNodes.Add(oreMineNode);
                         pathFinding.finish = originalNode;
                         mineSeen = false;
                     }

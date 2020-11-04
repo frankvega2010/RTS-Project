@@ -25,8 +25,10 @@ public class MiningAction : BasePrimitiveAction
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
         villager.unavailableNodes.Clear();
-        oreMine = villager.oreMine.GetComponent<OreMine>();
-        Debug.Log("MINING");
+        oreMine = villager.oreMineNode.GetComponent<OreMine>();
+        animator.SetBool("Patrol2", false);
+        animator.SetBool("Mine2", true);
+        animator.SetBool("Return2", false);
         base.OnStart();
     }
 
@@ -47,16 +49,18 @@ public class MiningAction : BasePrimitiveAction
                     //Mine is empty, returns to base
                     if(OnDestroyMine != null)
                     {
-                        OnDestroyMine(villager.oreMine.gameObject);
+                        OnDestroyMine(villager.oreMineNode.gameObject);
                     }
                     villager.mineSeen = false;
-                    villager.oreMine = null;
+                    villager.oreMineNode = null;
+                    villager.isReturning = true;
                     return TaskStatus.COMPLETED;
                 }
             }
             else
             {
                 //Capacity is full, returns to base
+                villager.isReturning = true;
                 return TaskStatus.COMPLETED;
             }
             

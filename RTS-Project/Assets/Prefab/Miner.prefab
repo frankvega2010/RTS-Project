@@ -93,7 +93,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10.66
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7386916067622496389
 Rigidbody:
@@ -208,6 +208,7 @@ MonoBehaviour:
   walkSpeed: 8
   autoFindPath: 1
   sight: {fileID: 7386916067622496390}
+  animator: {fileID: 2787185982805848338}
   ID: 0
   color: {r: 1, g: 0.07075471, b: 0.07075471, a: 1}
   mineSeen: 0
@@ -223,7 +224,6 @@ MonoBehaviour:
   hq: {fileID: 0}
   hqSpawnNode: {fileID: 0}
   doOnceMine: 1
-  animator: {fileID: 2787185982805848338}
 --- !u!114 &1699006732
 MonoBehaviour:
   m_ObjectHideFlags: 0

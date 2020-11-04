@@ -21,7 +21,6 @@ public class GoToMineAction : BasePrimitiveAction
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
         villager.unavailableNodes.Clear();
-        Debug.Log("GOING TO MINE");
         base.OnStart();
     }
 
@@ -58,14 +57,14 @@ public class GoToMineAction : BasePrimitiveAction
                         villager.pathFinding.waypointIndex = 0;
                         villager.pathFinding.canGo = false;
 
-                        if (villager.pathFinding.choosenPath[villager.pathFinding.waypointIndex] == villager.oreMine)
+                        if (villager.pathFinding.choosenPath[villager.pathFinding.waypointIndex] == villager.oreMineNode)
                         {
                             /*if (OnMarkDone != null)
                             {
-                                OnMarkDone(explorer.oreMine.gameObject);
+                                OnMarkDone(explorer.oreMineNode.gameObject);
                             }*/
 
-                            animator.SetTrigger("Mine");
+                            //animator.SetTrigger("Mine");
 
                             return TaskStatus.COMPLETED;
                         }

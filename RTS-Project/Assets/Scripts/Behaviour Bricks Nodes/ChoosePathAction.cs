@@ -20,6 +20,9 @@ public class ChoosePathAction : BasePrimitiveAction
     {
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
+        animator.SetBool("Patrol2", true);
+        animator.SetBool("Mine2", false);
+        animator.SetBool("Return2", false);
         base.OnStart();
     }
 
@@ -31,6 +34,7 @@ public class ChoosePathAction : BasePrimitiveAction
             if (villager.SearchNewPathOnce())
             {
                 // The action is completed. We must inform the execution engine.
+                //animator.SetTrigger("Patrol");
                 return TaskStatus.COMPLETED;
             }
             else
@@ -42,7 +46,7 @@ public class ChoosePathAction : BasePrimitiveAction
         else
         {
             villager.InitialSearch();
-            animator.SetTrigger("Patrol");
+            //animator.SetTrigger("Patrol");
             villager.doOnce = true;
             return TaskStatus.COMPLETED;
         }

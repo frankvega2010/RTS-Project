@@ -20,6 +20,9 @@ public class ChooseMinePathAction : BasePrimitiveAction
     {
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
+        animator.SetBool("Patrol2", true);
+        animator.SetBool("Mine2", false);
+        animator.SetBool("Return2", false);
         base.OnStart();
     }
 
@@ -29,10 +32,8 @@ public class ChooseMinePathAction : BasePrimitiveAction
         if(!villager.doOnceMine)
         {
             villager.doOnceMine = true;
-            if (villager.SearchForMine(villager.oreMine))
+            if (villager.SearchForMine(villager.oreMineNode))
             {
-               // animator.SetTrigger("GoToMine");
-                animator.SetTrigger("Patrol");
                 // The action is completed. We must inform the execution engine.
                 return TaskStatus.COMPLETED;
             }

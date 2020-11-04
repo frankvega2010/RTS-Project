@@ -17,7 +17,8 @@ public class Villager : NPC
     public HQ hq;
     public Node hqSpawnNode;
     public bool doOnceMine;
-    
+    public bool isReturning;
+
     // Start is called before the first frame update
     protected new void Start()
     {
@@ -26,63 +27,8 @@ public class Villager : NPC
         mineSeen = false;
         hq = GameManager.Get().hq;
         hqSpawnNode = hq.villagerSpawnPoint.GetComponent<Node>();
+        MiningAction.OnDestroyMine += DeleteCurrentMineNode;
         //Invoke("InitialSearch", 0.1f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            SearchNewPath();
-        }
-
-        if (pathFinding.choosenPath.Count > 0)
-        {
-            foreach (Node n in pathFinding.choosenPath)
-            {
-                for (int c = 0; c < n.nodesParent.Count; c++)
-                {
-                    if (n.nodesParent[c].villagerID == ID)
-                    {
-                        if(n.nodesParent[c].parent)
-                        {
-                            Debug.DrawLine(n.transform.position, n.nodesParent[c].parent.transform.position, color);
-                        }
-                    }
-                }
-            }
-
-            SearchForMine();
-
-            if (pathFinding.canGo)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, pathFinding.choosenPath[pathFinding.waypointIndex].transform.position, Time.deltaTime * walkSpeed);
-                transform.LookAt(pathFinding.choosenPath[pathFinding.waypointIndex].transform);
-
-                if (Vector3.Distance(transform.position, pathFinding.choosenPath[pathFinding.waypointIndex].transform.position) <= pathFinding.changeWaypointDistance)
-                {
-                    pathFinding.waypointIndex--;
-                    if (pathFinding.waypointIndex < 0)
-                    {
-                        pathFinding.waypointIndex = 0;
-                        pathFinding.canGo = false;
-                        if (pathFinding.choosenPath[pathFinding.waypointIndex] == oreMine)
-                        {
-                            mineSeen = false;
-                            oreMine = null;
-                        }
-                        if (autoFindPath)
-                        {
-                            if(!SearchForMine())
-                            {
-                                SearchNewPath();
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
     }
 
     public override bool SearchForMine()
@@ -91,11 +37,11 @@ public class Villager : NPC
         {
             pathFinding.start = pathFinding.finish;
             Node originalNode = pathFinding.start;
-            oreMine = SearchRandomNodeFromFOV();
-            if (!isNodeOnUnavailableList(oreMine) && oreMine != null)
+            oreMineNode = SearchRandomNodeFromFOV();
+            if (!isNodeOnUnavailableList(oreMineNode) && oreMineNode != null)
             {
-                OreMine oreMineComp = oreMine.GetComponent<OreMine>();
-                if(oreMineComp.isMarked)
+                OreMine oreMineComp = oreMineNode.GetComponent<OreMine>();
+                if (oreMineComp.isMarked)
                 {
                     Node startNode = null;
 
@@ -108,22 +54,22 @@ public class Villager : NPC
                         startNode = pathFinding.finish;
                     }
 
-                    if (pathFinding.Find(startNode, oreMine, ID))
+                    if (pathFinding.Find(startNode, oreMineNode, ID))
                     {
-                        Debug.Log("FOUND MINE BOYS");
+                        //Debug.Log("FOUND MINE BOYS");
                         pathFinding.start = startNode;
-                        pathFinding.finish = oreMine;
+                        pathFinding.finish = oreMineNode;
                         mineSeen = true;
                         pathFinding.canGo = true;
                         pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
                         unavailableNodes.Clear();
-                        unavailableNodes.Add(oreMine);
+                        unavailableNodes.Add(oreMineNode);
                         return true;
                     }
                     else
                     {
-                        Debug.Log("couldnt find path FOR MINES");
-                        unavailableNodes.Add(oreMine);
+                       // Debug.Log("couldnt find path FOR MINES");
+                        unavailableNodes.Add(oreMineNode);
                         pathFinding.finish = originalNode;
                         mineSeen = false;
                     }
@@ -140,10 +86,10 @@ public class Villager : NPC
         {
             pathFinding.start = pathFinding.finish;
             Node originalNode = pathFinding.start;
-            oreMine = newOreMine;
-            if (!isNodeOnUnavailableList(oreMine) && oreMine != null)
+            oreMineNode = newOreMine;
+            if (!isNodeOnUnavailableList(oreMineNode) && oreMineNode != null)
             {
-                OreMine oreMineComp = oreMine.GetComponent<OreMine>();
+                OreMine oreMineComp = oreMineNode.GetComponent<OreMine>();
                 if (oreMineComp.isMarked)
                 {
                     Node startNode = null;
@@ -157,22 +103,22 @@ public class Villager : NPC
                         startNode = pathFinding.finish;
                     }
 
-                    if (pathFinding.Find(startNode, oreMine, ID))
+                    if (pathFinding.Find(startNode, oreMineNode, ID))
                     {
-                        Debug.Log("FOUND MINE BOYS");
+                        //Debug.Log("FOUND MINE BOYS");
                         pathFinding.start = startNode;
-                        pathFinding.finish = oreMine;
+                        pathFinding.finish = oreMineNode;
                         mineSeen = true;
                         pathFinding.canGo = true;
                         pathFinding.waypointIndex = pathFinding.choosenPath.Count - 1;
                         unavailableNodes.Clear();
-                        unavailableNodes.Add(oreMine);
+                        unavailableNodes.Add(oreMineNode);
                         return true;
                     }
                     else
                     {
-                        Debug.Log("couldnt find path FOR MINES");
-                        unavailableNodes.Add(oreMine);
+                        //Debug.Log("couldnt find path FOR MINES");
+                        unavailableNodes.Add(oreMineNode);
                         pathFinding.finish = originalNode;
                         mineSeen = false;
                     }
@@ -196,12 +142,29 @@ public class Villager : NPC
         }
         else
         {
-            Debug.Log("couldnt find path");
+            //Debug.Log("couldnt find path");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
             pathFinding.finish = originalNode;
         }
 
         return false;
+    }
+
+    public void DeleteCurrentMineNode(GameObject mineNodeObject)
+    {
+        if(oreMineNode)
+        {
+            if (oreMineNode == mineNodeObject.GetComponent<Node>())
+            {
+                oreMineNode = null;
+                mineSeen = false;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        MiningAction.OnDestroyMine -= DeleteCurrentMineNode;
     }
 }

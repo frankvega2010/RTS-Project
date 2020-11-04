@@ -11,7 +11,7 @@ public class PatrolBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Change Icon
-        Debug.Log("Patrolling");
+        //Debug.Log("Patrolling");
         explorer = animator.transform.parent.GetComponentInParent<Explorer>();
         if (!explorer.doOnce)
         {

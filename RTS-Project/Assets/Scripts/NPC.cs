@@ -16,7 +16,7 @@ public class NPC : MonoBehaviour
     public int ID;
     public Color color;
     public bool mineSeen;
-    public Node oreMine;
+    public Node oreMineNode;
     public bool doOnce;
 
     public PathfindingBehaviour pathFinding;
@@ -30,12 +30,6 @@ public class NPC : MonoBehaviour
         pathFinding = GetComponent<PathfindingBehaviour>();
         unavailableNodes = new List<Node>();
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 
     public virtual bool SearchForMine()
     {
@@ -55,7 +49,7 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            Debug.Log("couldnt find path");
+            //Debug.Log("couldnt find path");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
             pathFinding.finish = originalNode;
@@ -76,7 +70,7 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            Debug.Log("couldnt find path");
+            //Debug.Log("couldnt find path");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
             pathFinding.finish = originalNode;

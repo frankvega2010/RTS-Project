@@ -93,7 +93,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10.66
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2816427704070592802
 Rigidbody:
@@ -181,7 +181,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8192
-  raycastDistance: 25
+  raycastDistance: 15
   speed: 12
   changeWaypointDistance: 0
   canGo: 0
@@ -203,13 +203,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1950bf5e38bfd91489cba4eb5e6663a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRadius: 50
-  walkSpeed: 15
+  sightRadius: 35
+  walkSpeed: 8
   autoFindPath: 1
   sight: {fileID: 2816427704070592801}
   animator: {fileID: 5637267648960326984}
   ID: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.3242327, g: 1, b: 0, a: 1}
   mineSeen: 0
   oreMine: {fileID: 0}
   doOnce: 0
