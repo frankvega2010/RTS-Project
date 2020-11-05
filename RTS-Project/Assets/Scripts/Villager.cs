@@ -15,6 +15,7 @@ public class Villager : NPC
     public float extractTimer;
     [HideInInspector]
     public HQ hq;
+    
     public Node hqSpawnNode;
     public bool doOnceMine;
     public bool isReturning;

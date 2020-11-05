@@ -8,11 +8,14 @@ public class HQ : MonoBehaviour
     public static OnGoldAction OnGoldDeposit;
     public static OnGoldAction OnGoldUsed;
 
+    public GameObject explorerPrefab;
     public GameObject villagerPrefab;
     public float villagerCost;
+    public float explorerCost;
     public Transform villagerSpawnPoint;
     private GameManager gm;
     private List<Villager> villagers = new List<Villager>();
+    private List<Explorer> explorers = new List<Explorer>();
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,25 @@ public class HQ : MonoBehaviour
         if(OnGoldDeposit != null)
         {
             OnGoldDeposit();
+        }
+    }
+
+    public void SpawnExplorer()
+    {
+        if (gm.gold >= explorerCost)
+        {
+            gm.gold -= explorerCost;
+
+            //Spawn Explorer on spawn point
+            GameObject newExplorer = Instantiate(explorerPrefab, villagerSpawnPoint.transform.position, villagerSpawnPoint.transform.rotation);
+            Vector3 newColor = new Vector3(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
+            Color color = new Color(newColor.x, newColor.y, newColor.z, 1);
+            newExplorer.GetComponent<Villager>().color = color;
+            explorers.Add(newExplorer.GetComponent<Explorer>());
+            if (OnGoldUsed != null)
+            {
+                OnGoldUsed();
+            }
         }
     }
 

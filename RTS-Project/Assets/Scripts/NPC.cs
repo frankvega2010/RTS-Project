@@ -18,6 +18,7 @@ public class NPC : MonoBehaviour
     public bool mineSeen;
     public Node oreMineNode;
     public bool doOnce;
+    public NPCUI UIComp;
 
     public PathfindingBehaviour pathFinding;
     public List<Node> unavailableNodes;

@@ -29,6 +29,7 @@ public class MiningAction : BasePrimitiveAction
         animator.SetBool("Patrol2", false);
         animator.SetBool("Mine2", true);
         animator.SetBool("Return2", false);
+        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Mine);
         base.OnStart();
     }
 
@@ -44,6 +45,7 @@ public class MiningAction : BasePrimitiveAction
             {
                 float amountExtracted = oreMine.ExtractGold(villager.extractAmount);
                 villager.goldHolding += amountExtracted;
+                villager.UIComp.UpdateText("x"+villager.goldHolding);
                 if (amountExtracted < villager.extractAmount)
                 {
                     //Mine is empty, returns to base

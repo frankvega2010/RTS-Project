@@ -16,6 +16,7 @@ public class MarkBehaviour : StateMachineBehaviour
         //Debug.Log("Marking");
         explorer = animator.transform.parent.GetComponentInParent<Explorer>();
         explorer.unavailableNodes.Clear();
+        explorer.UIComp.UpdateIcon(NPCUI.NPCStates.Mark);
         //explorer.SearchNewPath();
     }
 

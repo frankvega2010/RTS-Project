@@ -20,6 +20,8 @@ public class GoToHQAction : BasePrimitiveAction
     // Initialization method. If not established, we look for the shooting point.
     public override void OnStart()
     {
+
+        //Needs to fix some bugs here.
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
         oreMine = villager.oreMineNode.GetComponent<OreMine>();
@@ -27,6 +29,7 @@ public class GoToHQAction : BasePrimitiveAction
         animator.SetBool("Patrol2", false);
         animator.SetBool("Mine2", false);
         animator.SetBool("Return2", true);
+        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Return);
         base.OnStart();
     }
 
@@ -80,6 +83,8 @@ public class GoToHQAction : BasePrimitiveAction
                             {
                                 //Debug.Log("Gold mine is NOT empty");
                             }
+
+                            villager.UIComp.UpdateText("x" + villager.goldHolding);
                             villager.doOnceMine = false;
                             villager.isReturning = false;
                             return TaskStatus.COMPLETED;

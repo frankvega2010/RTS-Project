@@ -22,6 +22,7 @@ public class PatrolBehaviour : StateMachineBehaviour
         {
             explorer.SearchNewPath();
         }
+        explorer.UIComp.UpdateIcon(NPCUI.NPCStates.Patrol);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

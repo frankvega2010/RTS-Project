@@ -20,6 +20,7 @@ public class FollowPathAction : BasePrimitiveAction
     {
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
+        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Patrol);
         base.OnStart();
     }
 

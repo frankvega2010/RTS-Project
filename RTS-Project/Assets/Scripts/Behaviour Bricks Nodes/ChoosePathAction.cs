@@ -23,6 +23,7 @@ public class ChoosePathAction : BasePrimitiveAction
         animator.SetBool("Patrol2", true);
         animator.SetBool("Mine2", false);
         animator.SetBool("Return2", false);
+        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Patrol);
         base.OnStart();
     }
 

@@ -21,6 +21,7 @@ public class GoToMineAction : BasePrimitiveAction
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
         villager.unavailableNodes.Clear();
+        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Mine);
         base.OnStart();
     }
 
