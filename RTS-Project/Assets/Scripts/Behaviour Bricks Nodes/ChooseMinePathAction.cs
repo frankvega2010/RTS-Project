@@ -20,6 +20,7 @@ public class ChooseMinePathAction : BasePrimitiveAction
     {
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
+        //villager.unavailableNodes.Clear();
         animator.SetBool("Patrol2", true);
         animator.SetBool("Mine2", false);
         animator.SetBool("Return2", false);

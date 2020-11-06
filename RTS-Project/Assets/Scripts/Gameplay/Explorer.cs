@@ -66,6 +66,9 @@ public class Explorer : NPC
                 }
                 else
                 {
+                    unavailableNodes.Add(oreMineNode);
+                    pathFinding.finish = originalNode;
+                    mineSeen = false;
                     oreMineNode = null;
                 }
             }

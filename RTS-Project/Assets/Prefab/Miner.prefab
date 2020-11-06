@@ -653,7 +653,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8192
-  raycastDistance: 25
+  raycastDistance: 35
   speed: 12
   changeWaypointDistance: 0
   canGo: 0

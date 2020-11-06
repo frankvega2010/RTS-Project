@@ -106,7 +106,7 @@ MonoBehaviour:
     />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams>\r\n       
     <outputValues>\r\n          <entry name=\"var\" type=\"System.Boolean\" isBlackboard=\"True\"
     blackboard=\"initialState\" />\r\n        </outputValues>\r\n      </outputParams>\r\n     
-    <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"25\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\"
+    <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"25\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\"
     name=\"Frank/IsGoldCapacityFull\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
     <entry name=\"boolCondition\" type=\"System.Boolean\" isBlackboard=\"False\"
     value=\"False\" />\r\n          <entry name=\"Villager\" type=\"UnityEngine.GameObject\"
@@ -117,7 +117,7 @@ MonoBehaviour:
     />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"29\" />\r\n       
     </elem>\r\n      </children>\r\n      <inputParams />\r\n      <outputParams
     />\r\n      <localParams />\r\n    </SequenceNode>\r\n    <ConditionEvalNode
-    id=\"21\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"Frank/IsGoldCapacityFull\">\r\n     
+    id=\"21\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"Frank/IsGoldCapacityFull\">\r\n     
     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"boolCondition\"
     type=\"System.Boolean\" isBlackboard=\"False\" value=\"True\" />\r\n         
     <entry name=\"Villager\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"

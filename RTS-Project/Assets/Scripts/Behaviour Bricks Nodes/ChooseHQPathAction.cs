@@ -20,6 +20,7 @@ public class ChooseHQPathAction : BasePrimitiveAction
     {
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
+        //villager.unavailableNodes.Clear();
         villager.UIComp.UpdateIcon(NPCUI.NPCStates.Return);
         base.OnStart();
     }

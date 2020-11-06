@@ -60,6 +60,8 @@ public class GoToMineAction : BasePrimitiveAction
 
                         if (villager.pathFinding.choosenPath[villager.pathFinding.waypointIndex] == villager.oreMineNode)
                         {
+                            /*villager.unavailableNodes.Clear();
+                            villager.unavailableNodes.Add(villager.oreMineNode);*/
                             /*if (OnMarkDone != null)
                             {
                                 OnMarkDone(explorer.oreMineNode.gameObject);

@@ -79,6 +79,9 @@ public class Villager : NPC
                 }
                 else
                 {
+                    unavailableNodes.Add(oreMineNode);
+                    pathFinding.finish = originalNode;
+                    mineSeen = false;
                     oreMineNode = null;
                 }
             }
@@ -133,6 +136,9 @@ public class Villager : NPC
                 }
                 else
                 {
+                    unavailableNodes.Add(oreMineNode);
+                    pathFinding.finish = originalNode;
+                    mineSeen = false;
                     oreMineNode = null;
                 }
             }
@@ -174,6 +180,7 @@ public class Villager : NPC
         {
             if (oreMineNode == mineNodeObject.GetComponent<Node>())
             {
+                Destroy(oreMineNode.GetComponent<OreMine>().currentFlag);
                 oreMineNode = null;
                 mineSeen = false;
             }

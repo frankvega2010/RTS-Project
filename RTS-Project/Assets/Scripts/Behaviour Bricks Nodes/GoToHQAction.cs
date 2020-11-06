@@ -74,6 +74,7 @@ public class GoToHQAction : BasePrimitiveAction
                         {
 
                             //GOLD IS DELIVERED
+                            villager.unavailableNodes.Clear();
                             villager.hq.DepositGold(villager.goldHolding);
                             villager.goldHolding = 0;
 
@@ -89,6 +90,8 @@ public class GoToHQAction : BasePrimitiveAction
                                 villager.oreMineNode = null;
                                 //Debug.Log("Gold mine is NOT empty");
                             }
+
+                            //villager.unavailableNodes.Add(villager.oreMineNode);
 
                             villager.UIComp.UpdateText("x" + villager.goldHolding);
                             villager.doOnceMine = false;

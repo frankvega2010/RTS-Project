@@ -62,6 +62,7 @@ public class FollowPathAction : BasePrimitiveAction
                         villager.pathFinding.waypointIndex--;
                         if (villager.pathFinding.waypointIndex < 0)
                         {
+                            villager.unavailableNodes.Clear();
                             villager.pathFinding.waypointIndex = 0;
                             villager.pathFinding.canGo = false;
  
