@@ -27,35 +27,11 @@ public class Sight : MonoBehaviour
         if (other.gameObject.tag == tagToFind)
         {
             objectInSight = false;
+            //Agregar los que entren en el trigger, y despues chequear si estan dentro del angulo, cuando el npc tenga que buscar.
 
-            Vector3 direction = other.transform.position - transform.position;
-            float angle = Vector3.Angle(direction, transform.forward);
-
-            if (angle < fovAngle)
+            if (!objectsFound.Contains(other.transform.gameObject))
             {
-                RaycastHit hit;
-
-                if (Physics.Raycast(transform.position, direction.normalized, out hit, detectionCol.radius * 1.2f, mask))
-                {
-                    if (hit.transform.gameObject.tag == tagToFind)
-                    {
-                        objectInSight = true;
-                        if(!objectsFound.Contains(hit.transform.gameObject))
-                        {
-                            objectsFound.Add(hit.transform.gameObject);
-                        }
-                        //Debug.Log(other.gameObject.name);
-                    }
-                }
-            }
-            else
-            {
-                if (objectsFound.Contains(other.transform.gameObject))
-                {
-                    objectsFound.Remove(other.transform.gameObject);
-                }
-
-                objectInSight = false;
+                objectsFound.Add(other.transform.gameObject);
             }
         }
     }

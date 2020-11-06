@@ -30,7 +30,7 @@ public class Explorer : NPC
             if (!isNodeOnUnavailableList(oreMineNode) && oreMineNode != null)
             {
                 OreMine o = oreMineNode.GetComponent<OreMine>();
-                if(!o.isMarked)
+                if(!o.isMarked && o.enabled)
                 {
                     Node startNode = null;
 

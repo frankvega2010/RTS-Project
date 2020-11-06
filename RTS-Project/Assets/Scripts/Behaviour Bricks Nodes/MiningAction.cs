@@ -53,6 +53,7 @@ public class MiningAction : BasePrimitiveAction
                     {
                         OnDestroyMine(villager.oreMineNode.gameObject);
                     }
+ 
                     villager.mineSeen = false;
                     villager.oreMineNode = null;
                     villager.isReturning = true;

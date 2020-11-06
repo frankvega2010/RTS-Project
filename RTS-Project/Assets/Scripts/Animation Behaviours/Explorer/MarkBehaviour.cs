@@ -60,8 +60,9 @@ public class MarkBehaviour : StateMachineBehaviour
                             explorer.oreMineNode.GetComponent<OreMine>().currentFlag = flag;
                             //explorer.oreMineNode.GetComponent<OreMine>().mineModel.SetActive(true);
                             explorer.oreMineNode.GetComponent<OreMine>().isMarked = true;
+                            //explorer.oreMineNode.GetComponent<OreMine>().enabled = true;
 
-                            if(OnMarkDone != null)
+                            if (OnMarkDone != null)
                             {
                                 OnMarkDone(explorer.oreMineNode.gameObject);
                             }

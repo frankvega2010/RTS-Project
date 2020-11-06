@@ -116,7 +116,25 @@ public class NPC : MonoBehaviour
                 Node n = g.GetComponent<Node>();
                 if (n != pathFinding.start || n != pathFinding.finish && n.isWalkable)
                 {
-                    pointsFound.Add(n);
+                    //Check if its in FOV and nothing is touching between the npc and node.
+                    Vector3 direction = n.transform.position - transform.position;
+                    float angle = Vector3.Angle(direction, transform.forward);
+
+                    if (angle < sight.fovAngle)
+                    {
+                        RaycastHit hit;
+
+                        if (Physics.Raycast(transform.position, direction.normalized, out hit, sight.detectionCol.radius * 1.2f, sight.mask))
+                        {
+                            if (hit.transform.gameObject.tag == sight.tagToFind)
+                            {
+                                sight.objectInSight = true;
+                                pointsFound.Add(n);
+                                //Debug.Log(other.gameObject.name);
+                            }
+                        }
+                    }
+                    
                 }
             }
 

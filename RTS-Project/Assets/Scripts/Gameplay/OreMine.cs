@@ -76,6 +76,7 @@ public class OreMine : MonoBehaviour
             //Debug.Log("Mine Destroyed");
             gameObject.tag = "Node";
             mineModel.SetActive(false);
+            isMarked = false;
             currentGold = 0;
             //mesh.material.color = Color.black;
             //isMarked = false;
