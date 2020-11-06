@@ -47,7 +47,7 @@ public class HQ : MonoBehaviour
             GameObject newExplorer = Instantiate(explorerPrefab, villagerSpawnPoint.transform.position, villagerSpawnPoint.transform.rotation);
             Vector3 newColor = new Vector3(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
             Color color = new Color(newColor.x, newColor.y, newColor.z, 1);
-            newExplorer.GetComponent<Villager>().color = color;
+            newExplorer.GetComponent<Explorer>().color = color;
             explorers.Add(newExplorer.GetComponent<Explorer>());
             if (OnGoldUsed != null)
             {

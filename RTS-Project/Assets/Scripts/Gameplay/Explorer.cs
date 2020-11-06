@@ -61,7 +61,12 @@ public class Explorer : NPC
                         unavailableNodes.Add(oreMineNode);
                         pathFinding.finish = originalNode;
                         mineSeen = false;
+                        oreMineNode = null;
                     }
+                }
+                else
+                {
+                    oreMineNode = null;
                 }
             }
         }

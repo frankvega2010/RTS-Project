@@ -26,6 +26,7 @@ public class Villager : NPC
         base.Start();
 
         mineSeen = false;
+        oreMineNode = null;
         hq = GameManager.Get().hq;
         hqSpawnNode = hq.villagerSpawnPoint.GetComponent<Node>();
         MiningAction.OnDestroyMine += DeleteCurrentMineNode;
@@ -39,7 +40,7 @@ public class Villager : NPC
             pathFinding.start = pathFinding.finish;
             Node originalNode = pathFinding.start;
             oreMineNode = SearchRandomNodeFromFOV();
-            if (!isNodeOnUnavailableList(oreMineNode) && oreMineNode != null)
+            if (!isNodeOnUnavailableList(oreMineNode) && oreMineNode)
             {
                 OreMine oreMineComp = oreMineNode.GetComponent<OreMine>();
                 if (oreMineComp.isMarked)
@@ -73,7 +74,12 @@ public class Villager : NPC
                         unavailableNodes.Add(oreMineNode);
                         pathFinding.finish = originalNode;
                         mineSeen = false;
+                        oreMineNode = null;
                     }
+                }
+                else
+                {
+                    oreMineNode = null;
                 }
             }
         }
@@ -122,7 +128,12 @@ public class Villager : NPC
                         unavailableNodes.Add(oreMineNode);
                         pathFinding.finish = originalNode;
                         mineSeen = false;
+                        oreMineNode = null;
                     }
+                }
+                else
+                {
+                    oreMineNode = null;
                 }
             }
         }
@@ -143,13 +154,18 @@ public class Villager : NPC
         }
         else
         {
-            //Debug.Log("couldnt find path");
-            pathFinding.canGo = false;
-            transform.rotation *= Quaternion.Euler(0, 180, 0);
-            pathFinding.finish = originalNode;
+            //TP TO SPAWNPOINT
+            Debug.Log("SearchNewPathToHQ VILLAGER");
+            pathFinding.choosenPath.Clear();
+            pathFinding.choosenPath.Add(hqSpawnNode);
+            pathFinding.canGo = true;
+            pathFinding.waypointIndex = 0;
+            transform.position = hqSpawnNode.transform.position;
+            pathFinding.start = hqSpawnNode;
+            pathFinding.finish = hqSpawnNode;
         }
 
-        return false;
+        return true;
     }
 
     public void DeleteCurrentMineNode(GameObject mineNodeObject)

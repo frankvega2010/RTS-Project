@@ -24,7 +24,11 @@ public class GoToHQAction : BasePrimitiveAction
         //Needs to fix some bugs here.
         villager = villagerGO.GetComponent<Villager>();
         animator = villager.animator;
-        oreMine = villager.oreMineNode.GetComponent<OreMine>();
+        if(villager.oreMineNode)
+        {
+            oreMine = villager.oreMineNode.GetComponent<OreMine>();
+        }
+        
         villager.unavailableNodes.Clear();
         animator.SetBool("Patrol2", false);
         animator.SetBool("Mine2", false);
@@ -73,14 +77,16 @@ public class GoToHQAction : BasePrimitiveAction
                             villager.hq.DepositGold(villager.goldHolding);
                             villager.goldHolding = 0;
 
-                            if (oreMine.currentGold <= 0)
+                            if (oreMine && oreMine.currentGold <= 0)
                             {
                                 //Debug.Log("Gold mine is empty");
                                 villager.mineSeen = false;
                                 villager.oreMineNode = null;
                             }
-                            else
+                            else if(!oreMine)
                             {
+                                villager.mineSeen = false;
+                                villager.oreMineNode = null;
                                 //Debug.Log("Gold mine is NOT empty");
                             }
 

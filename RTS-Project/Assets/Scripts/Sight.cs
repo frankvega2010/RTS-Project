@@ -23,8 +23,6 @@ public class Sight : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-       // Debug.Log("messi");
-        //Debug.Log(other.gameObject.tag);
 
         if (other.gameObject.tag == tagToFind)
         {
@@ -33,7 +31,7 @@ public class Sight : MonoBehaviour
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
 
-            if (angle < fovAngle/* * 0.5f*/)
+            if (angle < fovAngle)
             {
                 RaycastHit hit;
 

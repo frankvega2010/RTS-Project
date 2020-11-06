@@ -52,6 +52,7 @@ public class MineSpawner : MonoBehaviour
             OreMine oreMine = mine.GetComponent<OreMine>();
             oreMine.isMarked = false;
             oreMine.enabled = false;
+            Destroy(oreMine.currentFlag);
             mines.Remove(mine);
         }
     }

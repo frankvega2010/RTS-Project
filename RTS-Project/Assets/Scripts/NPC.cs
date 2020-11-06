@@ -50,7 +50,7 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            //Debug.Log("couldnt find path");
+            Debug.Log("SearchNewPath NPC");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
             pathFinding.finish = originalNode;
@@ -71,7 +71,7 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            //Debug.Log("couldnt find path");
+            Debug.Log("SearchNewPathOnce NPC");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
             pathFinding.finish = originalNode;
