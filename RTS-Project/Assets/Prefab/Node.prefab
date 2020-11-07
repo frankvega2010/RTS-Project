@@ -148,9 +148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxGold: 500
   cantBeMine: 0
+  mineModel: {fileID: 1580145424273175500}
   currentGold: 0
   isMarked: 0
-  mineModel: {fileID: 1580145424273175500}
   currentFlag: {fileID: 0}
 --- !u!1001 &8799969044067214174
 PrefabInstance:
@@ -167,7 +167,7 @@ PrefabInstance:
     - target: {fileID: 7495760705540436112, guid: 921e644a9848c04489cef195bb720936,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.66
       objectReference: {fileID: 0}
     - target: {fileID: 7495760705540436112, guid: 921e644a9848c04489cef195bb720936,
         type: 3}
