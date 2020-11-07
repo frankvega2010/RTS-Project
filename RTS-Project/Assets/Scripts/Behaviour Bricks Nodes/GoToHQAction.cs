@@ -8,94 +8,87 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
 [Help("Goes to the HQ.")]
 public class GoToHQAction : BasePrimitiveAction
 {
-    // Define the input parameter "bullet" (the prefab to be cloned).
-    [InParam("VillagerGO")]
-    public GameObject villagerGO;
+    [InParam("MinerGO")]
+    public GameObject minerGO;
 
     private OreMine oreMine;
-    private Villager villager;
+    private Miner miner;
     private Animator animator;
 
-
-    // Initialization method. If not established, we look for the shooting point.
     public override void OnStart()
     {
 
         //Needs to fix some bugs here.
-        villager = villagerGO.GetComponent<Villager>();
-        animator = villager.animator;
-        if(villager.oreMineNode)
+        miner = minerGO.GetComponent<Miner>();
+        animator = miner.animator;
+        if(miner.oreMineNode)
         {
-            oreMine = villager.oreMineNode.GetComponent<OreMine>();
+            oreMine = miner.oreMineNode.GetComponent<OreMine>();
         }
         
-        villager.unavailableNodes.Clear();
+        miner.unavailableNodes.Clear();
         animator.SetBool("Patrol2", false);
         animator.SetBool("Mine2", false);
         animator.SetBool("Return2", true);
-        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Return);
+        miner.UIComp.UpdateIcon(NPCUI.NPCStates.Return);
         base.OnStart();
     }
 
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
     {
-        if (villager.pathFinding.choosenPath.Count > 0)
+        if (miner.pathFinding.choosenPath.Count > 0)
         {
-            foreach (Node n in villager.pathFinding.choosenPath)
+            foreach (Node n in miner.pathFinding.choosenPath)
             {
                 for (int c = 0; c < n.nodesParent.Count; c++)
                 {
-                    if (n.nodesParent[c].villagerID == villager.ID)
+                    if (n.nodesParent[c].villagerID == miner.ID)
                     {
                         if (n.nodesParent[c].parent)
                         {
-                            Debug.DrawLine(n.transform.position, n.nodesParent[c].parent.transform.position, villager.color);
+                            Debug.DrawLine(n.transform.position, n.nodesParent[c].parent.transform.position, miner.color);
                         }
                     }
                 }
             }
 
             //Keep patrolling
-            if (villager.pathFinding.canGo)
+            if (miner.pathFinding.canGo)
             {
-                villager.transform.position = Vector3.MoveTowards(villager.transform.position, villager.pathFinding.choosenPath[villager.pathFinding.waypointIndex].transform.position, Time.deltaTime * villager.walkSpeed);
-                villager.transform.LookAt(villager.pathFinding.choosenPath[villager.pathFinding.waypointIndex].transform);
+                miner.transform.position = Vector3.MoveTowards(miner.transform.position, miner.pathFinding.choosenPath[miner.pathFinding.waypointIndex].transform.position, Time.deltaTime * miner.walkSpeed);
+                miner.transform.LookAt(miner.pathFinding.choosenPath[miner.pathFinding.waypointIndex].transform);
 
-                if (Vector3.Distance(villager.transform.position, villager.pathFinding.choosenPath[villager.pathFinding.waypointIndex].transform.position) <= villager.pathFinding.changeWaypointDistance)
+                if (Vector3.Distance(miner.transform.position, miner.pathFinding.choosenPath[miner.pathFinding.waypointIndex].transform.position) <= miner.pathFinding.changeWaypointDistance)
                 {
-                    villager.pathFinding.waypointIndex--;
-                    if (villager.pathFinding.waypointIndex < 0)
+                    miner.pathFinding.waypointIndex--;
+                    if (miner.pathFinding.waypointIndex < 0)
                     {
-                        villager.pathFinding.waypointIndex = 0;
-                        villager.pathFinding.canGo = false;
+                        miner.pathFinding.waypointIndex = 0;
+                        miner.pathFinding.canGo = false;
 
-                        if (villager.pathFinding.choosenPath[villager.pathFinding.waypointIndex] == villager.hqSpawnNode)
+                        if (miner.pathFinding.choosenPath[miner.pathFinding.waypointIndex] == miner.hqSpawnNode)
                         {
 
                             //GOLD IS DELIVERED
-                            villager.unavailableNodes.Clear();
-                            villager.hq.DepositGold(villager.goldHolding);
-                            villager.goldHolding = 0;
+                            miner.unavailableNodes.Clear();
+                            miner.hq.DepositGold(miner.goldHolding);
+                            miner.goldHolding = 0;
 
                             if (oreMine && oreMine.currentGold <= 0)
                             {
-                                //Debug.Log("Gold mine is empty");
-                                villager.mineSeen = false;
-                                villager.oreMineNode = null;
+                                miner.mineSeen = false;
+                                miner.oreMineNode = null;
                             }
                             else if(!oreMine)
                             {
-                                villager.mineSeen = false;
-                                villager.oreMineNode = null;
-                                //Debug.Log("Gold mine is NOT empty");
+                                miner.mineSeen = false;
+                                miner.oreMineNode = null;
                             }
 
-                            //villager.unavailableNodes.Add(villager.oreMineNode);
-
-                            villager.UIComp.UpdateText("x" + villager.goldHolding);
-                            villager.doOnceMine = false;
-                            villager.isReturning = false;
+                            miner.UIComp.UpdateText("x" + miner.goldHolding);
+                            miner.doOnceMine = false;
+                            miner.isReturning = false;
                             return TaskStatus.COMPLETED;
                         }
                     }

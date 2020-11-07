@@ -11,67 +11,63 @@ public class MiningAction : BasePrimitiveAction
     public delegate void OnMiningAction(GameObject mine);
     public static OnMiningAction OnDestroyMine;
 
-    // Define the input parameter "bullet" (the prefab to be cloned).
-    [InParam("VillagerGO")]
-    public GameObject villagerGO;
+    [InParam("MinerGO")]
+    public GameObject minerGO;
 
     private OreMine oreMine;
-    private Villager villager;
+    private Miner miner;
     private Animator animator;
 
-    // Initialization method. If not established, we look for the shooting point.
     public override void OnStart()
     {
-        villager = villagerGO.GetComponent<Villager>();
-        animator = villager.animator;
-        villager.unavailableNodes.Clear();
-        oreMine = villager.oreMineNode.GetComponent<OreMine>();
+        miner = minerGO.GetComponent<Miner>();
+        animator = miner.animator;
+        miner.unavailableNodes.Clear();
+        oreMine = miner.oreMineNode.GetComponent<OreMine>();
         animator.SetBool("Patrol2", false);
         animator.SetBool("Mine2", true);
         animator.SetBool("Return2", false);
-        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Mine);
+        miner.UIComp.UpdateIcon(NPCUI.NPCStates.Mine);
         base.OnStart();
     }
 
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
     {
-        villager.extractTimer += Time.deltaTime;
+        miner.extractTimer += Time.deltaTime;
 
-        if(villager.extractTimer >= villager.extractTime)
+        if(miner.extractTimer >= miner.extractTime)
         {
-            villager.extractTimer = 0;
-            if(villager.goldHolding < villager.goldCapacity)
+            miner.extractTimer = 0;
+            if(miner.goldHolding < miner.goldCapacity)
             {
-                float amountExtracted = oreMine.ExtractGold(villager.extractAmount);
-                villager.goldHolding += amountExtracted;
-                villager.UIComp.UpdateText("x"+villager.goldHolding);
-                if (amountExtracted < villager.extractAmount)
+                float amountExtracted = oreMine.ExtractGold(miner.extractAmount);
+                miner.goldHolding += amountExtracted;
+                miner.UIComp.UpdateText("x"+miner.goldHolding);
+                if (amountExtracted < miner.extractAmount)
                 {
                     //Mine is empty, returns to base
                     if(OnDestroyMine != null)
                     {
-                        OnDestroyMine(villager.oreMineNode.gameObject);
+                        OnDestroyMine(miner.oreMineNode.gameObject);
                     }
  
-                    villager.mineSeen = false;
-                    villager.oreMineNode = null;
-                    villager.isReturning = true;
+                    miner.mineSeen = false;
+                    miner.oreMineNode = null;
+                    miner.isReturning = true;
                     return TaskStatus.COMPLETED;
                 }
             }
             else
             {
                 //Capacity is full, returns to base
-                villager.isReturning = true;
+                miner.isReturning = true;
                 return TaskStatus.COMPLETED;
             }
             
         }
 
-        //return TaskStatus.SUSPENDED;
         return TaskStatus.RUNNING;
-        //return TaskStatus.FAILED;
     } // OnUpdate
 
 } // class MiningAction

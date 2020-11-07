@@ -18,31 +18,31 @@ MonoBehaviour:
     id=\"0\" guid=\"ae0be96cba1fa8044a2abcd3ae200e20\" nextId=\"41\">\r\n      <root>\r\n       
     <RepeatDecorator id=\"1\" />\r\n      </root>\r\n      <inputParams>\r\n       
     <inputValues>\r\n          <entry name=\"initialState\" type=\"System.Boolean\"
-    isBlackboard=\"False\" value=\"True\" />\r\n          <entry name=\"Villager\"
-    type=\"UnityEngine.GameObject\" isBlackboard=\"False\" />\r\n        </inputValues>\r\n     
-    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </BehaviorTree>\r\n   
-    <RepeatDecorator id=\"1\" loops=\"-1\" policy=\"ContinueWhenChildFails\">\r\n     
-    <child>\r\n        <PrioritySelectorNode id=\"6\" />\r\n      </child>\r\n     
-    <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </RepeatDecorator>\r\n   
-    <PrioritySelectorNode id=\"6\">\r\n      <children>\r\n        <elem>\r\n         
-    <GuardAndNode>\r\n            <guard>\r\n              <ConditionEvalNode id=\"35\"
-    />\r\n            </guard>\r\n            <child>\r\n              <PrioritySelectorNode
-    id=\"33\" />\r\n            </child>\r\n          </GuardAndNode>\r\n       
-    </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n             
-    <ConditionEvalNode id=\"9\" />\r\n            </guard>\r\n            <child>\r\n             
-    <SequenceNode id=\"8\" />\r\n            </child>\r\n          </GuardAndNode>\r\n       
-    </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n             
-    <ConditionEvalNode id=\"19\" />\r\n            </guard>\r\n            <child>\r\n             
-    <PrioritySelectorNode id=\"18\" />\r\n            </child>\r\n          </GuardAndNode>\r\n       
-    </elem>\r\n      </children>\r\n      <inputParams />\r\n      <outputParams
-    />\r\n      <localParams />\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode
-    id=\"35\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"Frank/MineFound\">\r\n     
+    isBlackboard=\"False\" value=\"True\" />\r\n          <entry name=\"Miner\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </BehaviorTree>\r\n    <RepeatDecorator
+    id=\"1\" loops=\"-1\" policy=\"ContinueWhenChildFails\">\r\n      <child>\r\n       
+    <PrioritySelectorNode id=\"6\" />\r\n      </child>\r\n      <inputParams />\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </RepeatDecorator>\r\n    <PrioritySelectorNode
+    id=\"6\">\r\n      <children>\r\n        <elem>\r\n          <GuardAndNode>\r\n           
+    <guard>\r\n              <ConditionEvalNode id=\"35\" />\r\n            </guard>\r\n           
+    <child>\r\n              <PrioritySelectorNode id=\"33\" />\r\n            </child>\r\n         
+    </GuardAndNode>\r\n        </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n           
+    <guard>\r\n              <ConditionEvalNode id=\"9\" />\r\n            </guard>\r\n           
+    <child>\r\n              <SequenceNode id=\"8\" />\r\n            </child>\r\n         
+    </GuardAndNode>\r\n        </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n           
+    <guard>\r\n              <ConditionEvalNode id=\"19\" />\r\n            </guard>\r\n           
+    <child>\r\n              <PrioritySelectorNode id=\"18\" />\r\n            </child>\r\n         
+    </GuardAndNode>\r\n        </elem>\r\n      </children>\r\n      <inputParams
+    />\r\n      <outputParams />\r\n      <localParams />\r\n    </PrioritySelectorNode>\r\n   
+    <ConditionEvalNode id=\"35\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"Frank/MineFound\">\r\n     
     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"boolCondition\"
     type=\"System.Boolean\" isBlackboard=\"False\" value=\"False\" />\r\n         
     <entry name=\"initialState\" type=\"System.Boolean\" isBlackboard=\"True\" blackboard=\"initialState\"
     />\r\n          <entry name=\"Villager\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
+    blackboard=\"Miner\" />\r\n          <entry name=\"Miner\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
     <PrioritySelectorNode id=\"33\">\r\n      <children>\r\n        <elem>\r\n         
     <GuardAndNode>\r\n            <guard>\r\n              <ConditionEvalNode id=\"38\"
     />\r\n            </guard>\r\n            <child>\r\n              <SequenceNode
@@ -66,8 +66,9 @@ MonoBehaviour:
     type=\"System.Boolean\" isBlackboard=\"False\" value=\"True\" />\r\n         
     <entry name=\"initialState\" type=\"System.Boolean\" isBlackboard=\"True\" blackboard=\"initialState\"
     />\r\n          <entry name=\"Villager\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
+    blackboard=\"Miner\" />\r\n          <entry name=\"Miner\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
     <PrioritySelectorNode id=\"18\">\r\n      <children>\r\n        <elem>\r\n         
     <GuardAndNode>\r\n            <guard>\r\n              <ConditionEvalNode id=\"25\"
     />\r\n            </guard>\r\n            <child>\r\n              <SequenceNode
@@ -81,8 +82,9 @@ MonoBehaviour:
     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"boolCondition\"
     type=\"System.Boolean\" isBlackboard=\"False\" value=\"True\" />\r\n         
     <entry name=\"Villager\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
+    blackboard=\"Miner\" />\r\n          <entry name=\"Miner\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
     <SequenceNode id=\"37\">\r\n      <children>\r\n        <elem>\r\n          <ActionNode
     id=\"39\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"40\"
     />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n     
@@ -91,8 +93,9 @@ MonoBehaviour:
     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"boolCondition\"
     type=\"System.Boolean\" isBlackboard=\"False\" value=\"False\" />\r\n         
     <entry name=\"Villager\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
+    blackboard=\"Miner\" />\r\n          <entry name=\"Miner\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
     <SequenceNode id=\"34\">\r\n      <children>\r\n        <elem>\r\n          <ActionNode
     id=\"26\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"27\"
     />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n     
@@ -106,234 +109,248 @@ MonoBehaviour:
     />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams>\r\n       
     <outputValues>\r\n          <entry name=\"var\" type=\"System.Boolean\" isBlackboard=\"True\"
     blackboard=\"initialState\" />\r\n        </outputValues>\r\n      </outputParams>\r\n     
-    <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"25\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\"
+    <localParams />\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"25\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\"
     name=\"Frank/IsGoldCapacityFull\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
     <entry name=\"boolCondition\" type=\"System.Boolean\" isBlackboard=\"False\"
     value=\"False\" />\r\n          <entry name=\"Villager\" type=\"UnityEngine.GameObject\"
-    isBlackboard=\"True\" blackboard=\"Villager\" />\r\n        </inputValues>\r\n     
-    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
-    <SequenceNode id=\"24\">\r\n      <children>\r\n        <elem>\r\n          <ActionNode
-    id=\"28\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"32\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"29\" />\r\n       
-    </elem>\r\n      </children>\r\n      <inputParams />\r\n      <outputParams
-    />\r\n      <localParams />\r\n    </SequenceNode>\r\n    <ConditionEvalNode
-    id=\"21\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"Frank/IsGoldCapacityFull\">\r\n     
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n          <entry name=\"Miner\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Miner\" />\r\n       
+    </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n      <localParams
+    />\r\n    </ConditionEvalNode>\r\n    <SequenceNode id=\"24\">\r\n      <children>\r\n       
+    <elem>\r\n          <ActionNode id=\"28\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ActionNode id=\"32\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode
+    id=\"29\" />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </SequenceNode>\r\n    <ConditionEvalNode
+    id=\"21\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"Frank/IsGoldCapacityFull\">\r\n     
     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"boolCondition\"
     type=\"System.Boolean\" isBlackboard=\"False\" value=\"True\" />\r\n         
     <entry name=\"Villager\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
+    blackboard=\"Miner\" />\r\n          <entry name=\"Miner\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
     <SequenceNode id=\"20\">\r\n      <children>\r\n        <elem>\r\n          <ActionNode
     id=\"30\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"31\"
     />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n     
     <outputParams />\r\n      <localParams />\r\n    </SequenceNode>\r\n    <ActionNode
     id=\"39\" action=\"Frank/ChooseHQPath\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
     <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode
-    id=\"40\" action=\"Frank/GoToHQ\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
-    <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode
-    id=\"26\" action=\"Frank/ChoosePath\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
-    <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
+    blackboard=\"Miner\" />\r\n          <entry name=\"MinerGO\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
+    <ActionNode id=\"40\" action=\"Frank/GoToHQ\">\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n          <entry name=\"MinerGO\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Miner\" />\r\n       
+    </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n      <localParams
+    />\r\n    </ActionNode>\r\n    <ActionNode id=\"26\" action=\"Frank/ChoosePath\">\r\n     
+    <inputParams>\r\n        <inputValues>\r\n          <entry name=\"VillagerGO\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Miner\" />\r\n         
+    <entry name=\"MinerGO\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
+    blackboard=\"Miner\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode
     id=\"27\" action=\"Frank/FollowPath\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
     <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Villager\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
+    blackboard=\"Miner\" />\r\n          <entry name=\"MinerGO\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
+    <ActionNode id=\"28\" action=\"Frank/ChooseMinePath\">\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n          <entry name=\"MinerGO\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Miner\" />\r\n       
+    </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n      <localParams
+    />\r\n    </ActionNode>\r\n    <ActionNode id=\"32\" action=\"Frank/GoToMine\">\r\n     
+    <inputParams>\r\n        <inputValues>\r\n          <entry name=\"VillagerGO\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Miner\" />\r\n         
+    <entry name=\"MinerGO\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
+    blackboard=\"Miner\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode
-    id=\"28\" action=\"Frank/ChooseMinePath\">\r\n      <inputParams>\r\n       
-    <inputValues>\r\n          <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\"
-    isBlackboard=\"True\" blackboard=\"Villager\" />\r\n        </inputValues>\r\n     
-    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"32\" action=\"Frank/GoToMine\">\r\n      <inputParams>\r\n       
-    <inputValues>\r\n          <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\"
-    isBlackboard=\"True\" blackboard=\"Villager\" />\r\n        </inputValues>\r\n     
-    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"29\" action=\"Frank/Mining\">\r\n      <inputParams>\r\n       
-    <inputValues>\r\n          <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\"
-    isBlackboard=\"True\" blackboard=\"Villager\" />\r\n        </inputValues>\r\n     
+    id=\"29\" action=\"Frank/Mining\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
+    <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
+    blackboard=\"Miner\" />\r\n          <entry name=\"MinerGO\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n        </inputValues>\r\n     
     </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
     <ActionNode id=\"30\" action=\"Frank/ChooseHQPath\">\r\n      <inputParams>\r\n       
     <inputValues>\r\n          <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\"
-    isBlackboard=\"True\" blackboard=\"Villager\" />\r\n        </inputValues>\r\n     
-    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"31\" action=\"Frank/GoToHQ\">\r\n      <inputParams>\r\n       
-    <inputValues>\r\n          <entry name=\"VillagerGO\" type=\"UnityEngine.GameObject\"
-    isBlackboard=\"True\" blackboard=\"Villager\" />\r\n        </inputValues>\r\n     
-    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n 
-    </runtimeInfo>\r\n  <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"Miner\"
-    _description=\"\" _removeIfClosed=\"False\">\r\n      <_rootList>\r\n       
-    <elem>\r\n          <RepeatDecorator id=\"1\" />\r\n        </elem>\r\n       
-    <elem>\r\n          <PrioritySelectorNode id=\"6\" />\r\n        </elem>\r\n       
-    <elem>\r\n          <SequenceNode id=\"8\" />\r\n        </elem>\r\n        <elem>\r\n         
-    <ConditionEvalNode id=\"9\" />\r\n        </elem>\r\n        <elem>\r\n         
-    <ActionNode id=\"10\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode
-    id=\"11\" />\r\n        </elem>\r\n        <elem>\r\n          <PrioritySelectorNode
-    id=\"18\" />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode
-    id=\"19\" />\r\n        </elem>\r\n        <elem>\r\n          <SequenceNode
-    id=\"20\" />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode
-    id=\"21\" />\r\n        </elem>\r\n        <elem>\r\n          <SequenceNode
-    id=\"24\" />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode
-    id=\"25\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"26\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"27\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <ActionNode id=\"28\" />\r\n        </elem>\r\n       
-    <elem>\r\n          <ActionNode id=\"29\" />\r\n        </elem>\r\n        <elem>\r\n         
-    <ActionNode id=\"30\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode
-    id=\"31\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"32\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <PrioritySelectorNode id=\"33\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <SequenceNode id=\"34\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"35\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"36\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <SequenceNode id=\"37\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"38\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"39\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <ActionNode id=\"40\" />\r\n        </elem>\r\n     
-    </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n          <RepeatDecorator
-    id=\"1\" />\r\n          <SequenceNode id=\"8\" />\r\n          <ConditionEvalNode
-    id=\"9\" />\r\n          <ActionNode id=\"10\" />\r\n          <PrioritySelectorNode
-    id=\"6\" />\r\n          <ActionNode id=\"11\" />\r\n          <ConditionEvalNode
-    id=\"36\" />\r\n          <SequenceNode id=\"37\" />\r\n          <ActionNode
-    id=\"26\" />\r\n          <ActionNode id=\"27\" />\r\n          <SequenceNode
-    id=\"20\" />\r\n          <ConditionEvalNode id=\"21\" />\r\n          <PrioritySelectorNode
-    id=\"18\" />\r\n          <ConditionEvalNode id=\"19\" />\r\n          <SequenceNode
-    id=\"24\" />\r\n          <ConditionEvalNode id=\"25\" />\r\n          <ActionNode
-    id=\"28\" />\r\n          <ActionNode id=\"29\" />\r\n          <ActionNode id=\"30\"
-    />\r\n          <ActionNode id=\"31\" />\r\n          <ActionNode id=\"32\" />\r\n         
-    <PrioritySelectorNode id=\"33\" />\r\n          <SequenceNode id=\"34\" />\r\n         
-    <ConditionEvalNode id=\"35\" />\r\n          <ConditionEvalNode id=\"38\" />\r\n         
-    <ActionNode id=\"39\" />\r\n          <ActionNode id=\"40\" />\r\n        </nodes>\r\n     
-    </_nodes>\r\n    </BehaviorTree>\r\n    <RepeatDecorator id=\"1\">\r\n      <_data>\r\n       
-    <data breakpoint=\"0\" selected=\"False\" position=\"-42.23973 -895.2138\" name=\"Repeat\"
-    description=\"Repeats the execution of its child node\" cardinality=\"1\" hasParent=\"False\">\r\n         
+    isBlackboard=\"True\" blackboard=\"Miner\" />\r\n          <entry name=\"MinerGO\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Miner\" />\r\n       
+    </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n      <localParams
+    />\r\n    </ActionNode>\r\n    <ActionNode id=\"31\" action=\"Frank/GoToHQ\">\r\n     
+    <inputParams>\r\n        <inputValues>\r\n          <entry name=\"VillagerGO\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Miner\" />\r\n         
+    <entry name=\"MinerGO\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
+    blackboard=\"Miner\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n 
+    <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"Miner\" _description=\"\"
+    _removeIfClosed=\"False\">\r\n      <_rootList>\r\n        <elem>\r\n         
+    <RepeatDecorator id=\"1\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <PrioritySelectorNode id=\"6\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <SequenceNode id=\"8\" />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode
+    id=\"9\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"10\"
+    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"11\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <PrioritySelectorNode id=\"18\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"19\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <SequenceNode id=\"20\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"21\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <SequenceNode id=\"24\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"25\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ActionNode id=\"26\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <ActionNode id=\"27\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ActionNode id=\"28\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode
+    id=\"29\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"30\"
+    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"31\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ActionNode id=\"32\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <PrioritySelectorNode id=\"33\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <SequenceNode id=\"34\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <ConditionEvalNode id=\"35\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <ConditionEvalNode id=\"36\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <SequenceNode id=\"37\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <ConditionEvalNode id=\"38\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <ActionNode id=\"39\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ActionNode id=\"40\" />\r\n        </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n       
+    <nodes>\r\n          <RepeatDecorator id=\"1\" />\r\n          <SequenceNode
+    id=\"8\" />\r\n          <ConditionEvalNode id=\"9\" />\r\n          <ActionNode
+    id=\"10\" />\r\n          <PrioritySelectorNode id=\"6\" />\r\n          <ActionNode
+    id=\"11\" />\r\n          <ConditionEvalNode id=\"36\" />\r\n          <SequenceNode
+    id=\"37\" />\r\n          <ActionNode id=\"26\" />\r\n          <ActionNode id=\"27\"
+    />\r\n          <SequenceNode id=\"20\" />\r\n          <ConditionEvalNode id=\"21\"
+    />\r\n          <PrioritySelectorNode id=\"18\" />\r\n          <ConditionEvalNode
+    id=\"19\" />\r\n          <SequenceNode id=\"24\" />\r\n          <ConditionEvalNode
+    id=\"25\" />\r\n          <ActionNode id=\"28\" />\r\n          <ActionNode id=\"29\"
+    />\r\n          <ActionNode id=\"30\" />\r\n          <ActionNode id=\"31\" />\r\n         
+    <ActionNode id=\"32\" />\r\n          <PrioritySelectorNode id=\"33\" />\r\n         
+    <SequenceNode id=\"34\" />\r\n          <ConditionEvalNode id=\"35\" />\r\n         
+    <ConditionEvalNode id=\"38\" />\r\n          <ActionNode id=\"39\" />\r\n         
+    <ActionNode id=\"40\" />\r\n        </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n   
+    <RepeatDecorator id=\"1\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"1212.046 -445.2138\" name=\"Repeat\" description=\"Repeats
+    the execution of its child node\" cardinality=\"1\" hasParent=\"False\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <RepeatDecorator id=\"1\" />\r\n       
     </data>\r\n      </_data>\r\n    </RepeatDecorator>\r\n    <PrioritySelectorNode
     id=\"6\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-94.80976 -698.4992\" name=\"Priority Selector\" description=\"\"
-    cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
-    <PrioritySelectorNode id=\"6\" />\r\n          <RepeatDecorator id=\"1\" />\r\n       
+    position=\"1159.476 -248.4993\" name=\"Priority Selector\" description=\"\" cardinality=\"1\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode
+    id=\"6\" />\r\n          <RepeatDecorator id=\"1\" />\r\n        </data>\r\n     
+    </_data>\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode id=\"35\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"459.3482
+    273.4645\" name=\"Frank/MineFound\" description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode id=\"35\" />\r\n         
+    <PrioritySelectorNode id=\"6\" />\r\n        </data>\r\n      </_data>\r\n   
+    </ConditionEvalNode>\r\n    <PrioritySelectorNode id=\"33\">\r\n      <_data>\r\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"444.3483 87.21516\" name=\"Priority
+    Selector\" description=\"\" cardinality=\"1\" hasParent=\"False\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode id=\"33\" />\r\n       
     </data>\r\n      </_data>\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode
-    id=\"35\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-794.9376 -176.5356\" name=\"Frank/MineFound\" description=\"Eval\"
+    id=\"9\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"1211.902 2.40323\" name=\"Basic/CheckBool\" description=\"Eval\" cardinality=\"1\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
+    id=\"9\" />\r\n          <PrioritySelectorNode id=\"6\" />\r\n        </data>\r\n     
+    </_data>\r\n    </ConditionEvalNode>\r\n    <SequenceNode id=\"8\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1211.902
+    2.40323\" name=\"Sequence\" description=\"Executes all its children in sequence
+    until all of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"8\" />\r\n        </data>\r\n     
+    </_data>\r\n    </SequenceNode>\r\n    <ConditionEvalNode id=\"19\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1768.717
+    406.0345\" name=\"Frank/MineFound\" description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode id=\"19\" />\r\n         
+    <PrioritySelectorNode id=\"6\" />\r\n        </data>\r\n      </_data>\r\n   
+    </ConditionEvalNode>\r\n    <PrioritySelectorNode id=\"18\">\r\n      <_data>\r\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"1721.105 355.7475\" name=\"Priority
+    Selector\" description=\"\" cardinality=\"1\" hasParent=\"False\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode id=\"18\" />\r\n       
+    </data>\r\n      </_data>\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode
+    id=\"38\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"297.8571 600.9638\" name=\"Frank/IsHoldingAnyGold\" description=\"Eval\"
     cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
-    <ConditionEvalNode id=\"35\" />\r\n          <PrioritySelectorNode id=\"6\" />\r\n       
-    </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n    <PrioritySelectorNode
-    id=\"33\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-809.9377 -362.7851\" name=\"Priority Selector\" description=\"\"
-    cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n         
-    <PrioritySelectorNode id=\"33\" />\r\n        </data>\r\n      </_data>\r\n   
-    </PrioritySelectorNode>\r\n    <ConditionEvalNode id=\"9\">\r\n      <_data>\r\n       
-    <data breakpoint=\"0\" selected=\"False\" position=\"-42.38268 -447.5966\" name=\"Basic/CheckBool\"
-    description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <ConditionEvalNode id=\"9\" />\r\n          <PrioritySelectorNode
-    id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n   
-    <SequenceNode id=\"8\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-42.38268 -447.5966\" name=\"Sequence\" description=\"Executes all
-    its children in sequence until all of them are successful\" cardinality=\"-1\"
-    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <SequenceNode
-    id=\"8\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
-    <ConditionEvalNode id=\"19\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"514.4301 -43.9654\" name=\"Frank/MineFound\" description=\"Eval\"
-    cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
-    <ConditionEvalNode id=\"19\" />\r\n          <PrioritySelectorNode id=\"6\" />\r\n       
-    </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n    <PrioritySelectorNode
-    id=\"18\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"466.818 -94.25233\" name=\"Priority Selector\" description=\"\" cardinality=\"1\"
-    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode
-    id=\"18\" />\r\n        </data>\r\n      </_data>\r\n    </PrioritySelectorNode>\r\n   
-    <ConditionEvalNode id=\"38\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"-955.0002 150.9642\" name=\"Frank/IsHoldingAnyGold\"
-    description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <ConditionEvalNode id=\"38\" />\r\n          <PrioritySelectorNode
-    id=\"33\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n   
-    <SequenceNode id=\"37\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-1049.686 42.21444\" name=\"Sequence\" description=\"Executes all
-    its children in sequence until all of them are successful\" cardinality=\"-1\"
-    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <SequenceNode
-    id=\"37\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
-    <ConditionEvalNode id=\"36\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"-490.9369 195.9641\" name=\"Frank/IsHoldingAnyGold\"
-    description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <ConditionEvalNode id=\"36\" />\r\n          <PrioritySelectorNode
-    id=\"33\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n   
-    <SequenceNode id=\"34\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-642.1874 25.96427\" name=\"Sequence\" description=\"Executes all
-    its children in sequence until all of them are successful\" cardinality=\"-1\"
-    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <SequenceNode
-    id=\"34\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
-    <ActionNode id=\"10\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-169.5257 -198.6396\" name=\"Basic/WaitForSeconds\" description=\"Action
-    that success after a period of time.\" cardinality=\"0\" hasParent=\"True\">\r\n         
-    <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"10\" />\r\n         
-    <SequenceNode id=\"8\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
+    <ConditionEvalNode id=\"38\" />\r\n          <PrioritySelectorNode id=\"33\"
+    />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n    <SequenceNode
+    id=\"37\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"203.1715 492.2145\" name=\"Sequence\" description=\"Executes all its
+    children in sequence until all of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"37\" />\r\n       
+    </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ConditionEvalNode id=\"36\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"763.3491
+    645.9638\" name=\"Frank/IsHoldingAnyGold\" description=\"Eval\" cardinality=\"1\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
+    id=\"36\" />\r\n          <PrioritySelectorNode id=\"33\" />\r\n        </data>\r\n     
+    </_data>\r\n    </ConditionEvalNode>\r\n    <SequenceNode id=\"34\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"612.0984
+    475.9644\" name=\"Sequence\" description=\"Executes all its children in sequence
+    until all of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"34\" />\r\n       
+    </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ActionNode id=\"10\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1084.76
+    251.3604\" name=\"Basic/WaitForSeconds\" description=\"Action that success after
+    a period of time.\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <ActionNode id=\"10\" />\r\n          <SequenceNode
+    id=\"8\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"11\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"50.33221 -189.9257\" name=\"Basic/SetBool\" description=\"Sets a value
+    position=\"1304.618 260.0743\" name=\"Basic/SetBool\" description=\"Sets a value
     to a boolean variable\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"11\" />\r\n          <SequenceNode
     id=\"8\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ConditionEvalNode id=\"25\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"170.1223 205.2061\" name=\"Frank/IsGoldCapacityFull\"
+    selected=\"False\" position=\"1424.408 655.2057\" name=\"Frank/IsGoldCapacityFull\"
     description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ConditionEvalNode id=\"25\" />\r\n          <PrioritySelectorNode
     id=\"18\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n   
     <SequenceNode id=\"24\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"170.1223 205.2061\" name=\"Sequence\" description=\"Executes all its
+    position=\"1424.408 655.2057\" name=\"Sequence\" description=\"Executes all its
     children in sequence until all of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"24\" />\r\n       
     </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ConditionEvalNode id=\"21\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"699.1198
-    213.2064\" name=\"Frank/IsGoldCapacityFull\" description=\"Eval\" cardinality=\"1\"
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1953.407
+    663.2057\" name=\"Frank/IsGoldCapacityFull\" description=\"Eval\" cardinality=\"1\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
     id=\"21\" />\r\n          <PrioritySelectorNode id=\"18\" />\r\n        </data>\r\n     
     </_data>\r\n    </ConditionEvalNode>\r\n    <SequenceNode id=\"20\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"699.1198
-    213.2064\" name=\"Sequence\" description=\"Executes all its children in sequence
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1953.407
+    663.2057\" name=\"Sequence\" description=\"Executes all its children in sequence
     until all of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"20\" />\r\n       
     </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ActionNode id=\"39\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"-1162.187
-    280.9643\" name=\"Frank/ChooseHQPath\" description=\"Chooses a path given a start
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"92.09853
+    730.9638\" name=\"Frank/ChooseHQPath\" description=\"Chooses a path given a start
     and finish node.\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"39\" />\r\n          <SequenceNode
     id=\"37\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"40\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-908.4376 280.9643\" name=\"Frank/GoToHQ\" description=\"Goes to the
+    position=\"345.8483 730.9638\" name=\"Frank/GoToHQ\" description=\"Goes to the
     HQ.\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\"
     />\r\n          <ActionNode id=\"40\" />\r\n          <SequenceNode id=\"37\"
     />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ActionNode
     id=\"26\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-478.7079 483.1193\" name=\"Frank/ChoosePath\" description=\"Chooses
+    position=\"524.1495 757.4047\" name=\"Frank/ChoosePath\" description=\"Chooses
     a path given a start and finish node.\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"26\" />\r\n         
     <SequenceNode id=\"34\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"27\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-257.1369 482.7258\" name=\"Frank/FollowPath\" description=\"Chooses
+    position=\"791.4343 778.4397\" name=\"Frank/FollowPath\" description=\"Chooses
     a path given a start and finish node.\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"27\" />\r\n         
     <SequenceNode id=\"34\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"28\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"-42.45763 543.6052\" name=\"Frank/ChooseMinePath\" description=\"Chooses
+    position=\"1211.828 993.6064\" name=\"Frank/ChooseMinePath\" description=\"Chooses
     a path given a start and finish node.\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"28\" />\r\n         
     <SequenceNode id=\"24\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"32\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"118.6973 656.1053\" name=\"Frank/GoToMine\" description=\"Goes to
+    position=\"1372.983 1106.106\" name=\"Frank/GoToMine\" description=\"Goes to
     the found mine.\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"32\" />\r\n          <SequenceNode
     id=\"24\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"29\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"496.6499 621.9376\" name=\"Frank/Mining\" description=\"Extracts gold
+    position=\"1585.222 1064.795\" name=\"Frank/Mining\" description=\"Extracts gold
     from a mine until it reaches its capacity or the mine is out of gold.\" cardinality=\"0\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
     id=\"29\" />\r\n          <SequenceNode id=\"24\" />\r\n        </data>\r\n     
     </_data>\r\n    </ActionNode>\r\n    <ActionNode id=\"30\">\r\n      <_data>\r\n       
-    <data breakpoint=\"0\" selected=\"False\" position=\"765.0736 631.7946\" name=\"Frank/ChooseHQPath\"
+    <data breakpoint=\"0\" selected=\"False\" position=\"1846.504 898.9378\" name=\"Frank/ChooseHQPath\"
     description=\"Chooses a path given a start and finish node.\" cardinality=\"0\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
     id=\"30\" />\r\n          <SequenceNode id=\"20\" />\r\n        </data>\r\n     
     </_data>\r\n    </ActionNode>\r\n    <ActionNode id=\"31\">\r\n      <_data>\r\n       
-    <data breakpoint=\"0\" selected=\"False\" position=\"1055.072 633.2225\" name=\"Frank/GoToHQ\"
+    <data breakpoint=\"0\" selected=\"False\" position=\"2129.358 917.508\" name=\"Frank/GoToHQ\"
     description=\"Goes to the HQ.\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"31\" />\r\n         
     <SequenceNode id=\"20\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n 

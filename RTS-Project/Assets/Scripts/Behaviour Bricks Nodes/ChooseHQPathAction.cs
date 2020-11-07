@@ -8,35 +8,29 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
 [Help("Chooses a path given a start and finish node.")]
 public class ChooseHQPathAction : BasePrimitiveAction
 {
-    // Define the input parameter "bullet" (the prefab to be cloned).
-    [InParam("VillagerGO")]
-    public GameObject villagerGO;
+    [InParam("MinerGO")]
+    public GameObject minerGO;
 
-    private Villager villager;
+    private Miner miner;
     private Animator animator;
 
-    // Initialization method. If not established, we look for the shooting point.
     public override void OnStart()
     {
-        villager = villagerGO.GetComponent<Villager>();
-        animator = villager.animator;
-        //villager.unavailableNodes.Clear();
-        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Return);
+        miner = minerGO.GetComponent<Miner>();
+        animator = miner.animator;
+        miner.UIComp.UpdateIcon(NPCUI.NPCStates.Return);
         base.OnStart();
     }
 
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
     {
-        if(villager.SearchNewPathToHQ())
+        if(miner.SearchNewPathToHQ())
         {
-            // The action is completed. We must inform the execution engine.
-            //animator.SetTrigger("Return");
             return TaskStatus.COMPLETED;
         }
         else
         {
-            // The action is completed. We must inform the execution engine.
             return TaskStatus.FAILED;
         }
     } // OnUpdate

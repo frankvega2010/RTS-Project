@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class PathfindingBehaviour : MonoBehaviour
 {
+    [Header("Config")]
     public LayerMask mask;
     public float raycastDistance;
     public float speed;
     public float changeWaypointDistance;
+
+
+    [Header("View Current Properties"), Space]
     public bool canGo;
     public int waypointIndex;
     public Node start;
     public Node finish;
-    public List<Node> openNodes = new List<Node>();
-    public List<Node> closedNodes = new List<Node>();
+    private List<Node> openNodes = new List<Node>();
+    private List<Node> closedNodes = new List<Node>();
+    [HideInInspector]
     public List<Node> choosenPath = new List<Node>();
     private Grid grid;
     // Start is called before the first frame update
@@ -21,27 +26,6 @@ public class PathfindingBehaviour : MonoBehaviour
     {
         grid = Grid.Get();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-
-        /*if (Input.GetMouseButtonDown(2))
-        {
-            if(grid)
-            {
-                if(start && finish)
-                {
-                   Find(start, finish);
-                    canGo = true;
-                    waypointIndex = choosenPath.Count-1;
-                }
-                
-            }
-        }*/
-    }
-
 
     public bool Find(Node start, Node finish, int ID)
     {
@@ -85,7 +69,6 @@ public class PathfindingBehaviour : MonoBehaviour
                             if (gCost < n.gCost || !openNodes.Contains(n))
                             {
                                 //Chequear si hay un obstaculo entre medio del current y el neighbour.
-                                //raycast?
                                 Vector3 direction = n.transform.position - current.transform.position;
                                 RaycastHit hit;
                                 bool hitObstacle = false;
@@ -146,16 +129,7 @@ public class PathfindingBehaviour : MonoBehaviour
         {
             return false;
         }
-            
-
-        
-        //return finalPath;
     }
-
-    /*public GetFinalPath()
-    {
-
-    }*/
 
     public Node GetLowestFCost()
     {

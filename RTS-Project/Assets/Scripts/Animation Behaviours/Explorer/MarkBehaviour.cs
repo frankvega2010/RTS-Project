@@ -12,12 +12,9 @@ public class MarkBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //Change Icon
-        //Debug.Log("Marking");
         explorer = animator.transform.parent.GetComponentInParent<Explorer>();
         explorer.unavailableNodes.Clear();
         explorer.UIComp.UpdateIcon(NPCUI.NPCStates.Mark);
-        //explorer.SearchNewPath();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -58,9 +55,7 @@ public class MarkBehaviour : StateMachineBehaviour
                             //Plantar banderin
                             GameObject flag = Instantiate(explorer.flagPrefab, explorer.oreMineNode.transform.position, explorer.oreMineNode.transform.rotation);
                             explorer.oreMineNode.GetComponent<OreMine>().currentFlag = flag;
-                            //explorer.oreMineNode.GetComponent<OreMine>().mineModel.SetActive(true);
                             explorer.oreMineNode.GetComponent<OreMine>().isMarked = true;
-                            //explorer.oreMineNode.GetComponent<OreMine>().enabled = true;
 
                             if (OnMarkDone != null)
                             {
@@ -86,10 +81,10 @@ public class MarkBehaviour : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
 
-    }
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

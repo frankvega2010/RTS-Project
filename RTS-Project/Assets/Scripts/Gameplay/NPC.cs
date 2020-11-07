@@ -10,17 +10,25 @@ public class NPC : MonoBehaviour
     public bool autoFindPath;
 
     [Header("Component Config")]
+    public NPCUI UIComp;
     public Sight sight;
     public Animator animator;
-    public static int NPCCount;
-    public int ID;
-    public Color color;
-    public bool mineSeen;
-    public Node oreMineNode;
-    public bool doOnce;
-    public NPCUI UIComp;
 
+    public static int NPCCount;
+
+    [HideInInspector]
+    public int ID;
+    [HideInInspector]
+    public Color color;
+    [HideInInspector]
+    public bool mineSeen;
+    [HideInInspector]
+    public Node oreMineNode;
+    [HideInInspector]
+    public bool doOnce;
+    [HideInInspector]
     public PathfindingBehaviour pathFinding;
+    [HideInInspector]
     public List<Node> unavailableNodes;
 
     // Start is called before the first frame update
@@ -50,7 +58,6 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            Debug.Log("SearchNewPath NPC");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
             pathFinding.finish = originalNode;
@@ -71,11 +78,9 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            Debug.Log("SearchNewPathOnce NPC");
             pathFinding.canGo = false;
             transform.rotation *= Quaternion.Euler(0, 180, 0);
             pathFinding.finish = originalNode;
-            //SearchNewPath();
         }
 
         return false;
@@ -84,7 +89,6 @@ public class NPC : MonoBehaviour
     public void InitialSearch()
     {
         pathFinding.finish = GameManager.Get().hq.villagerSpawnPoint.GetComponent<Node>();
-        //pathFinding.finish = SearchRandomNodeFromRadius();
         transform.position = pathFinding.finish.transform.position;
         if (autoFindPath)
         {
@@ -130,7 +134,6 @@ public class NPC : MonoBehaviour
                             {
                                 sight.objectInSight = true;
                                 pointsFound.Add(n);
-                                //Debug.Log(other.gameObject.name);
                             }
                         }
                     }
@@ -170,9 +173,6 @@ public class NPC : MonoBehaviour
                         {
                             pointsFound.Add(n);
                         }
-
-                        //pointsFound.Add(n);
-
                     }
                 }
             }

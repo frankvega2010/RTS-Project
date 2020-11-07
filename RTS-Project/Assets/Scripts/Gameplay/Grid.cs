@@ -12,25 +12,11 @@ public class Grid : MonobehaviourSingleton<Grid>
     // Start is called before the first frame update
     void Start()
     {
-        nodes = new Node[nodesParent.transform.childCount /*+ (obstaclesParent.transform.childCount*3)*/];
+        nodes = new Node[nodesParent.transform.childCount];
         for (int i = 0; i < nodesParent.transform.childCount; i++)
         {
             nodes[i] = nodesParent.transform.GetChild(i).GetComponent<Node>();
         }
-
-        /*int i2 = 0;
-        for (int i = 0; i < obstaclesParent.transform.childCount; i++)
-        {
-            Obstacle obs = obstaclesParent.transform.GetChild(i).GetComponent<Obstacle>();
-
-            foreach (Node n in obs.childNodes)
-            {
-                nodes[nodesParent.transform.childCount + i2] = n;
-                i2++;
-            }
-
-            //nodes[i] = obstaclesParent.transform.GetChild(i).GetComponent<Obstacle>();
-        }*/
 
         for (int i = 0; i < nodes.Length; i++)
         {
@@ -46,8 +32,6 @@ public class Grid : MonobehaviourSingleton<Grid>
             {
                 if(nodes[i].nodesParent[c].villagerID == ID)
                 {
-                    //nodes[i].nodesParent[c].villagerID = 1;
-                    //nodes[i].nodesParent[c].parent = null;
                     nodes[i].nodesParent[c].parent = null;
                 }
             }
@@ -64,9 +48,4 @@ public class Grid : MonobehaviourSingleton<Grid>
             nodes[i].fCost = float.MaxValue;
         }
     }
-    // Update is called once per frame
-   /* void Update()
-    {
-        
-    }*/
 }

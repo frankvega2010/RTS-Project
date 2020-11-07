@@ -10,18 +10,18 @@ public class IsGoldCapacityFullCondition : ConditionBase
     [InParam("boolCondition")]
     public bool boolCondition;
 
-    [InParam("Villager")]
-    public GameObject villagerGO;
+    [InParam("Miner")]
+    public GameObject minerGO;
 
     public override bool Check()
     {
-        Villager villager = villagerGO.GetComponent<Villager>();
+        Miner miner = minerGO.GetComponent<Miner>();
 
         if(boolCondition)
         {
-            if (villager != null)
+            if (miner != null)
             {
-                if (villager.goldHolding < villager.goldCapacity)
+                if (miner.goldHolding < miner.goldCapacity)
                     return false;
             }
 
@@ -29,9 +29,9 @@ public class IsGoldCapacityFullCondition : ConditionBase
         }
         else
         {
-            if (villager != null)
+            if (miner != null)
             {
-                if (villager.goldHolding < villager.goldCapacity)
+                if (miner.goldHolding < miner.goldCapacity)
                     return true;
             }
 

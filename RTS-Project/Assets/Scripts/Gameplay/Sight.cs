@@ -12,8 +12,9 @@ public class Sight : MonoBehaviour
     public LayerMask mask;
     public SphereCollider detectionCol;
 
-    [Header("Private Variables")] //Hide in inspector later
+    [HideInInspector]
     public bool objectInSight;
+    [HideInInspector]
     public List<GameObject> objectsFound;
     // Start is called before the first frame update
     void Awake()
@@ -23,7 +24,6 @@ public class Sight : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-
         if (other.gameObject.tag == tagToFind)
         {
             objectInSight = false;

@@ -6,12 +6,9 @@ public class PatrolBehaviour : StateMachineBehaviour
 {
     private Explorer explorer;
 
-
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //Change Icon
-        //Debug.Log("Patrolling");
         explorer = animator.transform.parent.GetComponentInParent<Explorer>();
         if (!explorer.doOnce)
         {
@@ -85,10 +82,10 @@ public class PatrolBehaviour : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
 
-    }
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

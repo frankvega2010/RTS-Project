@@ -20,23 +20,6 @@ public class Node : MonoBehaviour
     public List<nodeParent> nodesParent = new List<nodeParent>();
     public bool isWalkable;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Search for neighbours
-        //SearchNeighbours();
-    }
-
-    void OnMouseOver()
-    {
-        //If your mouse hovers over the GameObject with the script attached, output this message
-        //Debug.Log("Mouse is over GameObject.");
-
-       // if (Input.GetMouseButtonDown(0)) PathfindingBehaviour.start = this;
-       // if (Input.GetMouseButtonDown(1)) PathfindingBehaviour.finish = this;
-        //if (Input.GetMouseButtonDown(2)) Debug.Log("Pressed middle click.");
-    }
-
     public void SearchNeighbours()
     {
         Grid grid = Grid.Get();

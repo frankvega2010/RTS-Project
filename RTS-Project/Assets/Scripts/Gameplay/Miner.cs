@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PathfindingBehaviour))]
-public class Villager : NPC
+public class Miner : NPC
 {
-    [Header("Villager Config")]
+    [Header("Miner Config")]
     public float extractTime;
     public float extractAmount;
     public float goldCapacity;
 
-
+    [HideInInspector]
     public float goldHolding;
+    [HideInInspector]
     public float extractTimer;
     [HideInInspector]
     public HQ hq;
-    
+    [HideInInspector]
     public Node hqSpawnNode;
+    [HideInInspector]
     public bool doOnceMine;
+    [HideInInspector]
     public bool isReturning;
 
     // Start is called before the first frame update
@@ -115,7 +118,6 @@ public class Villager : NPC
 
                     if (pathFinding.Find(startNode, oreMineNode, ID))
                     {
-                        //Debug.Log("FOUND MINE BOYS");
                         pathFinding.start = startNode;
                         pathFinding.finish = oreMineNode;
                         mineSeen = true;
@@ -127,7 +129,6 @@ public class Villager : NPC
                     }
                     else
                     {
-                        //Debug.Log("couldnt find path FOR MINES");
                         unavailableNodes.Add(oreMineNode);
                         pathFinding.finish = originalNode;
                         mineSeen = false;
@@ -161,7 +162,6 @@ public class Villager : NPC
         else
         {
             //TP TO SPAWNPOINT
-            Debug.Log("SearchNewPathToHQ VILLAGER");
             pathFinding.choosenPath.Clear();
             pathFinding.choosenPath.Add(hqSpawnNode);
             pathFinding.canGo = true;

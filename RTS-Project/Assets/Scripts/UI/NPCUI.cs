@@ -25,18 +25,6 @@ public class NPCUI : MonoBehaviour
     public Sprite ReturnIcon;
     public Sprite MarkIcon;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-   /* // Update is called once per frame
-    void Update()
-    {
-        
-    }*/
-
     public void UpdateText(string newText)
     {
         goldText.text = newText;

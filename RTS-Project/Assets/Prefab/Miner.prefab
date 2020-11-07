@@ -660,8 +660,6 @@ MonoBehaviour:
   waypointIndex: 0
   start: {fileID: 0}
   finish: {fileID: 0}
-  openNodes: []
-  closedNodes: []
   choosenPath: []
 --- !u!114 &7386916068311599496
 MonoBehaviour:
@@ -678,6 +676,7 @@ MonoBehaviour:
   sightRadius: 35
   walkSpeed: 8
   autoFindPath: 1
+  UIComp: {fileID: 4030875558925705712}
   sight: {fileID: 7386916067622496390}
   animator: {fileID: 2787185982805848338}
   ID: 0
@@ -685,7 +684,6 @@ MonoBehaviour:
   mineSeen: 0
   oreMineNode: {fileID: 0}
   doOnce: 0
-  UIComp: {fileID: 4030875558925705712}
   pathFinding: {fileID: 0}
   unavailableNodes: []
   extractTime: 1
@@ -733,7 +731,7 @@ MonoBehaviour:
     objectParams:
     - {fileID: 7386916068311599498}
     objectParamsNames:
-    - Villager
+    - Miner
     objectParamsLostDefaultValue: 
     layerMaskParams: []
     layerMaskParamsNames: []

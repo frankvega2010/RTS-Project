@@ -6,18 +6,11 @@ public class Explorer : NPC
 {
     [Header("Explorer Config")]
     public GameObject flagPrefab;
-    
 
     // Start is called before the first frame update
     protected new void Start()
     {
         base.Start();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public override bool SearchForMine()
@@ -45,7 +38,6 @@ public class Explorer : NPC
 
                     if (pathFinding.Find(startNode, oreMineNode, ID))
                     {
-                        //Debug.Log("FOUND MINE BOYS");
                         pathFinding.start = startNode;
                         pathFinding.finish = oreMineNode;
                         mineSeen = true;
@@ -57,7 +49,6 @@ public class Explorer : NPC
                     }
                     else
                     {
-                        //Debug.Log("couldnt find path FOR MINES");
                         unavailableNodes.Add(oreMineNode);
                         pathFinding.finish = originalNode;
                         mineSeen = false;

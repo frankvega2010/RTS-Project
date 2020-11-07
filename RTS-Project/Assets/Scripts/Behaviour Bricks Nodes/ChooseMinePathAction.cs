@@ -8,35 +8,31 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
 [Help("Chooses a path given a start and finish node.")]
 public class ChooseMinePathAction : BasePrimitiveAction
 {
-    // Define the input parameter "bullet" (the prefab to be cloned).
-    [InParam("VillagerGO")]
-    public GameObject villagerGO;
+    [InParam("MinerGO")]
+    public GameObject minerGO;
 
-    private Villager villager;
+    private Miner miner;
     private Animator animator;
 
-    // Initialization method. If not established, we look for the shooting point.
     public override void OnStart()
     {
-        villager = villagerGO.GetComponent<Villager>();
-        animator = villager.animator;
-        //villager.unavailableNodes.Clear();
+        miner = minerGO.GetComponent<Miner>();
+        animator = miner.animator;
         animator.SetBool("Patrol2", true);
         animator.SetBool("Mine2", false);
         animator.SetBool("Return2", false);
-        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Mine);
+        miner.UIComp.UpdateIcon(NPCUI.NPCStates.Mine);
         base.OnStart();
     }
 
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
     {
-        if(!villager.doOnceMine)
+        if(!miner.doOnceMine)
         {
-            villager.doOnceMine = true;
-            if (villager.SearchForMine(villager.oreMineNode))
+            miner.doOnceMine = true;
+            if (miner.SearchForMine(miner.oreMineNode))
             {
-                // The action is completed. We must inform the execution engine.
                 return TaskStatus.COMPLETED;
             }
             else

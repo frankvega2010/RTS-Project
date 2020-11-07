@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MineSpawner : MonoBehaviour
 {
-    public int currentUnexploredMines;
     public int maxMines;
     public int maxUnexploredMines;
     public float minTime;
     public float maxTime;
-    public List<GameObject> mines = new List<GameObject>();
 
+
+    private List<GameObject> mines = new List<GameObject>();
+    private int currentUnexploredMines;
     private Grid grid;
     private float finalTime;
     private float spawnTimer;

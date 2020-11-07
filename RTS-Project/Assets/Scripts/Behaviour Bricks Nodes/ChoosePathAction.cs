@@ -8,48 +8,42 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
 [Help("Chooses a path given a start and finish node.")]
 public class ChoosePathAction : BasePrimitiveAction
 {
-    // Define the input parameter "bullet" (the prefab to be cloned).
-    [InParam("VillagerGO")]
-    public GameObject villagerGO;
+    [InParam("MinerGO")]
+    public GameObject minerGO;
 
-    private Villager villager;
+    private Miner miner;
     private Animator animator;
 
-    // Initialization method. If not established, we look for the shooting point.
     public override void OnStart()
     {
-        villager = villagerGO.GetComponent<Villager>();
-        animator = villager.animator;
-        //villager.unavailableNodes.Clear();
+        miner = minerGO.GetComponent<Miner>();
+        animator = miner.animator;
         animator.SetBool("Patrol2", true);
         animator.SetBool("Mine2", false);
         animator.SetBool("Return2", false);
-        villager.UIComp.UpdateIcon(NPCUI.NPCStates.Patrol);
+        miner.UIComp.UpdateIcon(NPCUI.NPCStates.Patrol);
         base.OnStart();
     }
 
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
     {
-        if (villager.doOnce)
+        if (miner.doOnce)
         {
-            if (villager.SearchNewPathOnce())
+            if (miner.SearchNewPathOnce())
             {
-                // The action is completed. We must inform the execution engine.
-                //animator.SetTrigger("Patrol");
                 return TaskStatus.COMPLETED;
             }
             else
             {
-                // The action is completed. We must inform the execution engine.
                 return TaskStatus.FAILED;
             }
         }
         else
         {
-            villager.InitialSearch();
+            miner.InitialSearch();
             //animator.SetTrigger("Patrol");
-            villager.doOnce = true;
+            miner.doOnce = true;
             return TaskStatus.COMPLETED;
         }
     } // OnUpdate
